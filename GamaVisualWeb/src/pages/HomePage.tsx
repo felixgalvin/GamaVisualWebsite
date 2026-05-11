@@ -1,11 +1,19 @@
+import Box from "@mui/material/Box";
+import Navbar from "../routes/NavBar";
+import Footer from "../routes/BottomNav";
 
 
 const HomePage: React.FC = () => {
   return (
-    <div>
-      <h1>Home Page</h1>
-      <p>Welcome to the Home Page!</p>
-    </div>
+    <Box sx={{
+      minHeight: "100vh",
+      backgroundImage: "url('/assets/home-background.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}>
+      <Navbar />
+      <Footer />
+    </Box>
   );
 };
 
