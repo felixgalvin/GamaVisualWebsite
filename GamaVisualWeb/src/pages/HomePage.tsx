@@ -1,9 +1,12 @@
-import React from "react";
-import { Box, Typography, Container, Grid, Button, Paper } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Typography, Container, Grid, Button, Fab, Zoom } from "@mui/material";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { motion } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 import coverImg from "../assets/CoverBlur.png"; 
+import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg"; 
+import siaran from "../assets/SiaranRadioMei.jpeg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -11,8 +14,30 @@ const fadeInUp = {
 };
 
 const HomePage: React.FC = () => {
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <Box sx={{ minHeight: "100vh", width: "90vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
+    <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
       <Navbar />
 
       {/* 1. HERO SECTION */}
@@ -36,7 +61,7 @@ const HomePage: React.FC = () => {
         <Box
           component="img"
           src="LogoGama.PNG" 
-          sx={{ width: { xs: "80%", md: "50%" }, maxWidth: "600px", mb: 2 }}
+          sx={{ width: { xs: "80%", md: "50%" }, maxWidth: "600px", mb: 2, marginTop: { xs: "110px", md: "80px" } }}
         />
       </Box>
 
@@ -58,27 +83,71 @@ const HomePage: React.FC = () => {
         </Box>
 
         {/* 3. VIDEO/ALBUM SECTION */}
-        <Grid container spacing={4} sx={{ mb: 15 }}>
-          {[1, 2].map((albumId, index) => ( // Ubah 'item' menjadi 'albumId' agar tidak bentrok dengan prop Grid
-            <Grid item xs={12} md={6} key={albumId}>
+        <Grid 
+          container 
+          spacing={4} 
+          sx={{ mb: 15 }} 
+          justifyContent="center" 
+        >
+          {[
+            { img: thumbnail, url: "https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7" },
+            { img: thumbnail, url: "https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7" }
+          ].map((item, index) => (
+            <Grid 
+              item 
+              xs={12} 
+              sm={6} 
+              md={5} 
+              lg={5} 
+              key={index}
+            >
               <Box
                 component={motion.div}
                 initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
+                sx={{ 
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center"
+                }}
               >
-                <Paper
-                  elevation={10}
-                  sx={{
-                    height: "300px",
+                <Box
+                  component="a"
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ 
+                    width: "100%",
+                    maxWidth: "510px", 
                     borderRadius: "20px",
-                    backgroundImage: `url('YTThumbnailKasihMuTakBerubah.jpg')`,
-                    backgroundSize: "cover",
-                    transition: "transform 0.3s",
-                    "&:hover": { transform: "scale(1.05)" },
+                    overflow: "hidden",
+                    lineHeight: 0, // Penting: Menghilangkan whitespace ekstra di bawah elemen inline
+                    boxShadow: "0px 10px 30px rgba(0,0,0,0.5)",
+                    transition: "transform 0.3s ease-in-out",
+                    cursor: "pointer",
+                    textDecoration: "none",
+                    backgroundColor: "transparent", // Memastikan tidak ada background warna lain
+                    "&:hover": { 
+                      transform: "scale(1.05)" 
+                    },
+                    marginRight: index === 0 ? 9 : 0 // Memberi margin hanya pada item pertama
                   }}
-                />
+                >
+                  <Box
+                    component="img"
+                    src={item.img}
+                    alt={`Album ${index + 1}`}
+                    sx={{
+                      width: "100%",
+                      height: "100%", // Mengisi seluruh area box
+                      display: "block",
+                      objectFit: "cover", // Memotong sedikit jika rasio berbeda agar box terisi penuh
+                      aspectRatio: "16/9" // Memaksa gambar mengikuti rasio standar YouTube
+                    }}
+                  />
+                </Box>
               </Box>
             </Grid>
           ))}
@@ -86,23 +155,85 @@ const HomePage: React.FC = () => {
 
         {/* 4. ABOUT SECTION */}
         <Box
+          id="about-section"
           component={motion.div}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
+          sx={{ 
+            mb: 15, 
+            width: "100%",
+            // Menambahkan padding kiri-kanan agar tidak menempel tembok layar di HP
+            px: { xs: 2, md: 0 } 
+          }}
         >
-          <Grid container spacing={6} sx={{ mb: 15, alignItems: "center" }}>
+          <Grid 
+            container 
+            spacing={{ xs: 4, md: 10 }} // Jarak antar kolom diperlebar
+            alignItems="flex-start" 
+          >
+            {/* KOLOM KIRI: JUDUL */}
             <Grid item xs={12} md={5}>
-              <Typography variant="h3" sx={{ fontWeight: 800 }}>GAMA VISUAL?</Typography>
+              <Box sx={{ textAlign: "left" }}> {/* Memaksa teks rata kiri */}
+                <Typography 
+                  variant="h5" 
+                  sx={{ 
+                    fontWeight: 500, 
+                    opacity: 0.8,
+                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                    mb: 0.5 
+                  }}
+                >
+                  What is
+                </Typography>
+                <Typography 
+                  variant="h2" 
+                  sx={{ 
+                    fontWeight: 800, 
+                    lineHeight: 1.1,
+                    textTransform: "uppercase",
+                    fontSize: { xs: "2.5rem", md: "3.8rem" },
+                    letterSpacing: "-1px"
+                  }}
+                >
+                  GAMA VISUAL?
+                </Typography>
+              </Box>
             </Grid>
-            <Grid item xs={12} md={7}>
-              <Typography variant="body1" sx={{ mb: 3 }}>
-                Gama Visual adalah komunitas kreatif yang berjalan dengan berkolaborasi serta mewadahi generasi muda yang memiliki talenta melalui karya musik yang membawa pesan kasih dan pengharapan.
 
+            {/* KOLOM KANAN: DESKRIPSI & TOMBOL */}
+            <Grid 
+              item 
+              xs={12} 
+              md={7} 
+              sx={{ 
+                textAlign: "left", // Memaksa deskripsi rata kiri
+                pt: { md: 8 }      // Menurunkan teks agar sejajar dengan kata "GAMA"
+              }}
+            >
+              <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
+                Gama Visual adalah komunitas kreatif yang berjalan dengan berkolaborasi serta mewadahi generasi muda yang memiliki talenta melalui karya musik yang membawa pesan kasih dan pengharapan.
+              </Typography>
+              
+              <Typography variant="body1" sx={{ mb: 5, lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
                 “Gama” berarti perjalanan—sebuah proses yang penuh makna, yang membentuk kami untuk terus berkarya dan menjadi berkat bagi sesama.
               </Typography>
-              <Button variant="contained" sx={{ borderRadius: "20px", bgcolor: "#fff", color: "#000", "&:hover": { bgcolor: "#ddd" } }}>
+
+              <Button 
+                variant="contained" 
+                sx={{ 
+                  borderRadius: "30px", 
+                  bgcolor: "#E8EAF6", 
+                  color: "#050A30", 
+                  px: 6, 
+                  py: 1.5, 
+                  fontWeight: 700,
+                  textTransform: "none",
+                  fontSize: "1rem", 
+                  "&:hover": { bgcolor: "#fff" } 
+                }}
+              >
                 Learn More
               </Button>
             </Grid>
@@ -110,63 +241,48 @@ const HomePage: React.FC = () => {
         </Box>
 
         {/* 5. BEHIND THE SCENE SECTION */}
-        <Box sx={{ textAlign: "center", mb: 10 }}>
+        <Box sx={{ textAlign: "center", mb: 10, width: "100%" }}>
           <Typography 
-            component={motion.h4}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
             variant="h4" 
             sx={{ fontWeight: 700, mb: 6, letterSpacing: 1 }}
           >
             Behind The Scene
           </Typography>
 
-          <Grid container spacing={3}>
-            {[
-              "../assets/SiaranRadioMei.jpeg", 
-              "../assets/SiaranRadioMei.jpeg", 
-              "../assets/SiaranRadioMei.jpeg"
-            ].map((path, index) => (
-              <Grid item xs={12} sm={4} key={index}>
+          <Grid container spacing={3} justifyContent="center">
+            {[siaran, siaran, siaran].map((path, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <Box
                   component={motion.div}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2, duration: 0.5 }}
+                  sx={{ 
+                    width: "100%",
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    lineHeight: 0, // Menghilangkan gap kecil di bawah gambar
+                    boxShadow: "0px 4px 20px rgba(0,0,0,0.3)",
+                    transition: "all 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "translateY(-10px)",
+                      boxShadow: "0px 20px 40px rgba(0,0,0,0.5)",
+                    },
+                    marginRight: 19.3
+                  }}
                 >
-                  <Paper
-                    elevation={0}
+                  <Box
+                    component="img"
+                    src={path}
+                    alt={`Behind the scene ${index + 1}`}
                     sx={{
-                      height: "280px",
-                      borderRadius: "16px",
-                      overflow: "hidden",
-                      position: "relative",
-                      backgroundColor: "rgba(255, 255, 255, 0.05)",
-                      backgroundImage: `url('${path}')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      transition: "all 0.3s ease-in-out",
-                      "&:hover": {
-                        transform: "translateY(-10px)",
-                        boxShadow: "0px 20px 40px rgba(0,0,0,0.5)",
-                        border: "1px solid rgba(255, 255, 255, 0.3)",
-                      },
+                      width: "100%",
+                      height: "280px", // Kamu bisa ganti ke "auto" jika ingin mengikuti rasio asli
+                      objectFit: "cover", // Memastikan gambar memenuhi kotak tanpa gepeng
+                      display: "block"
                     }}
-                  >
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        background: "linear-gradient(to bottom, transparent 0%, rgba(5, 10, 48, 0.5) 100%)",
-                      }}
-                    />
-                  </Paper>
+                  />
                 </Box>
               </Grid>
             ))}
@@ -176,6 +292,29 @@ const HomePage: React.FC = () => {
       </Container>
       
       <Footer />
+
+      {/* BUTTON SCROLL TO TOP */}
+      <Zoom in={showButton}>
+        <Fab
+          onClick={scrollToTop}
+          size="small"
+          sx={{
+            position: "fixed",
+            bottom: { xs: 20, md: 30 },
+            right: { xs: 20, md: 30 },
+            bgcolor: "rgba(232, 234, 246, 0.8)", // Warna seperti tombol Learn More tapi transparan
+            color: "#050A30",
+            "&:hover": {
+              bgcolor: "#fff",
+            },
+            zIndex: 1000,
+          }}
+          aria-label="scroll back to top"
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Zoom>
+
     </Box>
   );
 };

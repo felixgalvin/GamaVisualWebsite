@@ -11,8 +11,8 @@ const Footer: React.FC = () => {
         // Gradient sesuai gambar referensi
         background: "linear-gradient(135deg, #7FA9FB 0%, #A1C4FD 100%)",
         color: "#fff",
-        pt: 8,
-        pb: 4,
+        pt: 7,
+        pb: 3,
       }}
     >
       <Container maxWidth="lg">
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
               {[
                 { icon: <FaInstagram />, url: "#" },
                 { icon: <FaTiktok />, url: "#" },
-                { icon: <FaYoutube />, url: "#" },
+                { icon: <FaYoutube />, url: "https://www.youtube.com/@Gama.Visual" },
                 { icon: <FaSpotify />, url: "#" },
               ].map((social, index) => (
                 <Link 
@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
           </Grid>
         </Grid>
 
-        <Divider sx={{ mt: 8, mb: 4, borderColor: "rgba(255, 255, 255, 0.4)", borderBottomWidth: 0.5 }} />
+        <Divider sx={{ mt: 8, mb: 4, borderColor: "rgba(255, 255, 255, 0.4)", borderBottomWidth: 2.5 }} />
 
         <Typography
           variant="caption"
