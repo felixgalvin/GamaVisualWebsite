@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Typography, Container, Grid, Button, Paper } from "@mui/material";
-import { motion } from "framer-motion"; // Import framer-motion
+import { motion } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
+import coverImg from "../assets/CoverBlur.png"; 
 
-// Variabel konfigurasi animasi agar tidak perlu menulis ulang
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
@@ -12,10 +12,10 @@ const fadeInUp = {
 
 const HomePage: React.FC = () => {
   return (
-    <Box sx={{ minHeight: "100vh", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
+    <Box sx={{ minHeight: "100vh", width: "90vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
       <Navbar />
 
-      {/* 1. HERO SECTION dengan Animasi Fade In */}
+      {/* 1. HERO SECTION */}
       <Box
         component={motion.div}
         initial="hidden"
@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
         variants={fadeInUp}
         sx={{
           height: "100vh",
-          backgroundImage: "url('/path/to/hero-background.jpg')",
+          backgroundImage: `url('${coverImg}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
@@ -35,17 +35,14 @@ const HomePage: React.FC = () => {
       >
         <Box
           component="img"
-          src="/path/to/logo-besar.png"
+          src="LogoGama.PNG" 
           sx={{ width: { xs: "80%", md: "50%" }, maxWidth: "600px", mb: 2 }}
         />
-        <Typography variant="h6" sx={{ letterSpacing: 10, fontWeight: 300, opacity: 0.9 }}>
-          VISUAL
-        </Typography>
       </Box>
 
       <Container maxWidth="lg" sx={{ py: 10 }}>
         
-        {/* 2. QUOTE SECTION - Muncul saat di-scroll (viewport) */}
+        {/* 2. QUOTE SECTION */}
         <Box 
           component={motion.div}
           initial="hidden"
@@ -55,18 +52,18 @@ const HomePage: React.FC = () => {
           sx={{ textAlign: "center", mb: 15, px: { xs: 2, md: 10 } }}
         >
           <Typography variant="h5" sx={{ fontStyle: "italic", mb: 2 }}>
-            "Apa pun juga yang kamu perbuat, perbuatlah dengan segenap hatimu..."
+            "Apa pun juga yang kamu perbuat, perbuatlah dengan segenap hatimu seperti untuk Tuhan dan bukan untuk manusia."
           </Typography>
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>Kolose 3 : 23</Typography>
         </Box>
 
         {/* 3. VIDEO/ALBUM SECTION */}
         <Grid container spacing={4} sx={{ mb: 15 }}>
-          {[1, 2].map((item, index) => (
-            <Grid item xs={12} md={6} key={item}>
+          {[1, 2].map((albumId, index) => ( // Ubah 'item' menjadi 'albumId' agar tidak bentrok dengan prop Grid
+            <Grid item xs={12} md={6} key={albumId}>
               <Box
                 component={motion.div}
-                initial={{ opacity: 0, x: index === 0 ? -50 : 50 }} // Muncul dari kiri dan kanan
+                initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -76,7 +73,7 @@ const HomePage: React.FC = () => {
                   sx={{
                     height: "300px",
                     borderRadius: "20px",
-                    backgroundImage: `url('/path/to/thumbnail-${item}.jpg')`,
+                    backgroundImage: `url('YTThumbnailKasihMuTakBerubah.jpg')`,
                     backgroundSize: "cover",
                     transition: "transform 0.3s",
                     "&:hover": { transform: "scale(1.05)" },
@@ -88,29 +85,29 @@ const HomePage: React.FC = () => {
         </Grid>
 
         {/* 4. ABOUT SECTION */}
-        <Grid 
-          container 
-          spacing={6} 
-          alignItems="center" 
-          sx={{ mb: 15 }}
+        <Box
           component={motion.div}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <Grid item xs={12} md={5}>
-            <Typography variant="h3" sx={{ fontWeight: 800 }}>GAMA VISUAL?</Typography>
+          <Grid container spacing={6} sx={{ mb: 15, alignItems: "center" }}>
+            <Grid item xs={12} md={5}>
+              <Typography variant="h3" sx={{ fontWeight: 800 }}>GAMA VISUAL?</Typography>
+            </Grid>
+            <Grid item xs={12} md={7}>
+              <Typography variant="body1" sx={{ mb: 3 }}>
+                Gama Visual adalah komunitas kreatif yang berjalan dengan berkolaborasi serta mewadahi generasi muda yang memiliki talenta melalui karya musik yang membawa pesan kasih dan pengharapan.
+
+                “Gama” berarti perjalanan—sebuah proses yang penuh makna, yang membentuk kami untuk terus berkarya dan menjadi berkat bagi sesama.
+              </Typography>
+              <Button variant="contained" sx={{ borderRadius: "20px", bgcolor: "#fff", color: "#000", "&:hover": { bgcolor: "#ddd" } }}>
+                Learn More
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={7}>
-            <Typography variant="body1" sx={{ mb: 3 }}>
-              Gama Visual adalah komunitas kreatif yang berjalan dengan berkolaborasi...
-            </Typography>
-            <Button variant="contained" sx={{ borderRadius: "20px", bgcolor: "#fff", color: "#000" }}>
-              Learn More
-            </Button>
-          </Grid>
-        </Grid>
+        </Box>
 
         {/* 5. BEHIND THE SCENE SECTION */}
         <Box sx={{ textAlign: "center", mb: 10 }}>
@@ -126,11 +123,10 @@ const HomePage: React.FC = () => {
           </Typography>
 
           <Grid container spacing={3}>
-            {/* Array path gambar untuk BTS */}
             {[
-              "/path/to/bts-1.jpg", 
-              "/path/to/bts-2.jpg", 
-              "/path/to/bts-3.jpg"
+              "../assets/SiaranRadioMei.jpeg", 
+              "../assets/SiaranRadioMei.jpeg", 
+              "../assets/SiaranRadioMei.jpeg"
             ].map((path, index) => (
               <Grid item xs={12} sm={4} key={index}>
                 <Box
@@ -138,7 +134,7 @@ const HomePage: React.FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.2, duration: 0.5 }} // Efek muncul satu per satu
+                  transition={{ delay: index * 0.2, duration: 0.5 }}
                 >
                   <Paper
                     elevation={0}
@@ -147,7 +143,7 @@ const HomePage: React.FC = () => {
                       borderRadius: "16px",
                       overflow: "hidden",
                       position: "relative",
-                      backgroundColor: "rgba(255, 255, 255, 0.05)", // Warna dasar transparan
+                      backgroundColor: "rgba(255, 255, 255, 0.05)",
                       backgroundImage: `url('${path}')`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
@@ -155,12 +151,11 @@ const HomePage: React.FC = () => {
                       transition: "all 0.3s ease-in-out",
                       "&:hover": {
                         transform: "translateY(-10px)",
-                        boxShadow: "0px 20px 40px rgba(0,0,0,0.4)",
+                        boxShadow: "0px 20px 40px rgba(0,0,0,0.5)",
                         border: "1px solid rgba(255, 255, 255, 0.3)",
                       },
                     }}
                   >
-                    {/* Overlay halus agar gambar lebih blend dengan tema gelap */}
                     <Box
                       sx={{
                         position: "absolute",
@@ -168,7 +163,7 @@ const HomePage: React.FC = () => {
                         left: 0,
                         width: "100%",
                         height: "100%",
-                        background: "linear-gradient(to bottom, transparent 0%, rgba(5, 10, 48, 0.4) 100%)",
+                        background: "linear-gradient(to bottom, transparent 0%, rgba(5, 10, 48, 0.5) 100%)",
                       }}
                     />
                   </Paper>

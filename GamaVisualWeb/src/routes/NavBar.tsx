@@ -22,9 +22,11 @@ const Navbar: React.FC = () => {
         position: "fixed",
         top: 0,
         left: 0,
-        zIndex: 1000,
-        backgroundColor: "transparent",
-        background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 100%)",
+        zIndex: 1100,
+        // Blok Biru Tua Transparan diletakkan di container utama
+        backgroundColor: "rgba(5, 10, 48, 0.7)", 
+        backdropFilter: "blur(10px)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
       }}
     >
       <Container maxWidth="xl">
@@ -33,23 +35,28 @@ const Navbar: React.FC = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            height: "80px", 
-            px: { xs: 2, md: 4 },
+            height: "80px", // Tinggi navbar
+            px: { xs: 1, md: 2 },
           }}
         >
           {/* Logo Section */}
           <Box 
             onClick={() => navigate("/")}
-            sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+            sx={{ 
+              cursor: "pointer", 
+              display: "flex", 
+              alignItems: "center",
+              flexShrink: 0 
+            }}
           >
-            <img src="/assets/LogoGama.PNG" alt="Gama Visual" style={{ height: '40px' }} /> 
+            <img src="LogoGama.PNG" alt="Gama Visual" style={{ height: '40px' }} /> 
           </Box>
 
           {/* Navigation Items */}
           <Box
             sx={{
               display: "flex",
-              gap: { md: 4, lg: 6 }, // Jarak antar menu lebih lebar sesuai gambar
+              gap: { md: 2, lg: 7 }, 
               alignItems: "center",
             }}
           >
@@ -58,16 +65,17 @@ const Navbar: React.FC = () => {
                 key={item.label}
                 onClick={() => navigate(item.path)}
                 sx={{
-                  color: "#fff", // Warna teks putih
+                  color: "#fff",
                   textTransform: "none",
                   fontSize: "0.95rem",
                   fontWeight: 400,
                   opacity: 0.8,
+                  whiteSpace: "nowrap", // Agar teks tidak turun ke bawah
                   transition: "all 0.3s ease",
                   "&:hover": {
                     backgroundColor: "transparent",
                     opacity: 1,
-                    transform: "translateY(-2px)", // Efek angkat sedikit saat hover
+                    transform: "translateY(-2px)",
                   },
                 }}
               >
