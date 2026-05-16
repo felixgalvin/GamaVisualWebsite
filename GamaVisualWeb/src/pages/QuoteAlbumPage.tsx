@@ -193,7 +193,22 @@ const QuotePage: React.FC = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const element = sectionRefs.current[id];
+    if (element) {
+      if (id === "inner-peace") {
+        // KONDISI KHUSUS INNER PEACE: Hitung posisi koordinat dikurangi offset tinggi Navbar
+        const navbarOffset = 100; // Menyesuaikan jarak agar judul tidak tertimpa navbar
+        const yPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+        
+        window.scrollTo({
+          top: yPosition,
+          behavior: "smooth"
+        });
+      } else {
+        // Sisa kategori lain tetap menggunakan fungsi bawaan semula
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   };
 
   return (
@@ -237,7 +252,11 @@ const QuotePage: React.FC = () => {
           <Box 
             key={cat.id} 
             ref={(el) => (sectionRefs.current[cat.id] = el)}
-            sx={{ pt: 10 }}
+            sx={{
+              pt: cat.id === "inner-peace" ? 0 : 10, 
+              mt: cat.id === "inner-peace" ? "-40px" : 0,
+              scrollMarginTop: cat.id === "inner-peace" ? "100px" : "0px"
+            }}
           >
             <QuoteSlider sectionId={cat.id} title={cat.label} />
           </Box>
