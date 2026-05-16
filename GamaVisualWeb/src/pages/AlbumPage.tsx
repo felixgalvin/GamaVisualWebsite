@@ -1,0 +1,438 @@
+import React, { useState, useEffect, useRef } from "react";
+import { Box, Typography, Container, Button, Fab, Zoom, Select, MenuItem, FormControl, IconButton } from "@mui/material";
+import type { SelectChangeEvent } from "@mui/material/Select";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { motion } from "framer-motion";
+import Navbar from "../routes/NavBar";
+import Footer from "../routes/BottomNav";
+import coverImg from "../assets/CoverBlur.png";
+import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
+import faith from "../assets/ResilienceFaith2.png";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const songs = [
+  {
+    id: "kasihmu",
+    title: "KASIH-MU TAK BERUBAH",
+    verse: "Mazmur 37:23-24 (TB)",
+    desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
+    img: thumbnail,
+    artist: "Tasya"
+  },
+  {
+    id: "doa",
+    title: "SATU DALAM DOA",
+    verse: "Mazmur 37:23-24 (TB)",
+    desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
+    img: faith,
+    artist: "Tasya"
+  },
+  {
+    id: "kasihmu2",
+    title: "KASIH-MU TAK BERUBAH",
+    verse: "Mazmur 37:23-24 (TB)",
+    desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
+    img: coverImg,
+    artist: "Tasya"
+  },
+  {
+    id: "doa2",
+    title: "SATU DALAM DOA",
+    verse: "Mazmur 37:23-24 (TB)",
+    desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
+    img: thumbnail,
+    artist: "Tasya"
+  }
+];
+
+const AlbumPage: React.FC = () => {
+  const [showButton, setShowButton] = useState(false);
+  const [searchTitle, setSearchTitle] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0); 
+  
+  const songRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowButton(window.scrollY > window.innerHeight);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToSong = (index: number) => {
+    if (songRefs.current[index]) {
+      const yOffset = -100;
+      const element = songRefs.current[index];
+      if (element) {
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const scrollCarousel = (direction: "left" | "right") => {
+    const container = carouselRef.current;
+    if (!container) return;
+
+    const scrollAmount = container.clientWidth;
+    const isAtLeftMost = container.scrollLeft <= 0;
+    const isAtRightMost = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
+
+    if (direction === "left") {
+        container.scrollLeft = isAtLeftMost ? container.scrollWidth : container.scrollLeft - scrollAmount;
+    }
+
+    if (direction === "right") {
+        container.scrollLeft = isAtRightMost ? 0 : container.scrollLeft + scrollAmount;
+    }
+  };
+
+  const handleCarouselScroll = () => {
+    if (carouselRef.current) {
+      const scrollPosition = carouselRef.current.scrollLeft;
+      const slideWidth = carouselRef.current.clientWidth;
+      const newIndex = Math.round(scrollPosition / slideWidth);
+      if (newIndex !== currentSlide) {
+        setCurrentSlide(newIndex);
+      }
+    }
+  };
+
+  const goToSlide = (index: number) => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollTo({
+        left: index * carouselRef.current.clientWidth,
+        behavior: "smooth"
+      });
+      setCurrentSlide(index);
+    }
+  };
+
+  useEffect(() => {
+    const autoScroll = setInterval(() => {
+      scrollCarousel("right");
+    }, 5000); 
+    return () => clearInterval(autoScroll);
+  }, []);
+
+  const handleSearchChange = (event: SelectChangeEvent) => {
+    const value = event.target.value;
+    setSearchTitle(value);
+    
+    if (value) {
+      const songIndex = songs.findIndex(song => song.id === value);
+      if (songIndex !== -1) {
+        scrollToSong(songIndex);
+      }
+    }
+  };
+
+  return (
+    <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
+        <Navbar />
+
+        <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
+    
+        <Box sx={{ position: "relative", width: "100%", mb: 8 }}>
+            
+            <IconButton 
+            onClick={() => scrollCarousel("left")}
+            sx={{ 
+                position: "absolute", 
+                left: 30, 
+                top: "50%",
+                transform: "translateY(-50%)",
+                bgcolor: "rgba(255,255,255,0.9)", 
+                opacity: 0.7,
+                color: "#000", 
+                zIndex: 10,
+                boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
+                "&:hover": { bgcolor: "#fff", opacity: 1} 
+            }}
+            >
+            <ChevronLeftIcon fontSize="medium" />
+            </IconButton>
+
+            <IconButton 
+            onClick={() => scrollCarousel("right")}
+            sx={{ 
+                position: "absolute", 
+                right: 30, 
+                top: "50%",
+                transform: "translateY(-50%)",
+                bgcolor: "rgba(255,255,255,0.9)",
+                opacity: 0.7, 
+                color: "#000", 
+                zIndex: 10,
+                boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
+                "&:hover": { bgcolor: "#fff", opacity: 1} 
+            }}
+            >
+            <ChevronRightIcon fontSize="medium" />
+            </IconButton>
+
+            <Box 
+            ref={carouselRef}
+            onScroll={handleCarouselScroll} 
+            sx={{
+                display: "flex",
+                overflowX: "hidden",
+                scrollSnapType: "x mandatory",
+                scrollBehavior: "smooth",
+                aspectRatio: "16/9", 
+                borderRadius: "24px",
+                boxShadow: "0px 10px 30px rgba(0,0,0,0.5)"
+            }}
+            >
+            {songs.map((song, index) => (
+                // SECTION: CAROUSEL ITEM
+                <Box
+                key={`carousel-${index}`}
+                onClick={() => scrollToSong(index)}
+                sx={{
+                    minWidth: "100%",
+                    height: "100%",
+                    scrollSnapAlign: "center",
+                    position: "relative",
+                    backgroundImage: `url('${song.img}')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    "&:hover .overlay": {
+                    backgroundColor: "rgba(0,0,0,0.3)"
+                    }
+                }}
+                >
+                </Box>
+            ))}
+            </Box>
+
+            {/* CAROUSEL DOTS */}
+            <Box 
+            sx={{ 
+                position: "absolute", 
+                bottom: 20, 
+                left: "50%", 
+                transform: "translateX(-50%)", 
+                display: "flex", 
+                gap: 1.5, 
+                zIndex: 10 
+            }}
+            >
+            {songs.map((_, index) => (
+                <Box
+                key={`dot-${index}`}
+                onClick={() => goToSlide(index)}
+                sx={{
+                    width: currentSlide === index ? 12 : 8,
+                    height: currentSlide === index ? 12 : 8,
+                    borderRadius: "50%",
+                    backgroundColor: currentSlide === index ? "#fff" : "rgba(255,255,255,0.5)",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                    backgroundColor: "#fff"
+                    }
+                }}
+                />
+            ))}
+            </Box>
+
+        </Box>
+        
+        {/* SECTION: EXPLORE HEADER & SEARCH BAR */}
+        <Box 
+            sx={{ 
+            display: "flex", 
+            flexDirection: { xs: "column", md: "row" }, 
+            justifyContent: "space-between", 
+            alignItems: "flex-start",
+            gap: 4,
+            mb: 10 
+            }}
+        >
+            <Box sx={{ textAlign: "left", flex: 1 }}> 
+            <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 2}}>
+                EXPLORE OUR <br/> MUSIC!
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 4, opacity: 0.9, maxWidth: "600px", fontSize: "1.1rem" }}>
+                Setiap lagu memiliki cerita—tentang perjalanan, harapan, dan makna yang ingin dibagikan.
+            </Typography>
+            <Button
+                variant="contained"
+                sx={{
+                borderRadius: "30px",
+                bgcolor: "#E8EAF6",
+                color: "#050A30",
+                px: 4,
+                py: 1.5,
+                fontWeight: 700,
+                textTransform: "none",
+                "&:hover": { bgcolor: "#fff" }
+                }}
+            >
+                Listen to Our Playlist
+            </Button>
+            </Box>
+            
+            <Box sx={{ display: "flex", justifyContent: "flex-end", width: { xs: "100%", md: "auto" } }}>
+            <FormControl
+                sx={{ 
+                    width: { xs: "100%", sm: "400px" },
+                    height: 56,
+                    bgcolor: "#E8EAF6",
+                    borderRadius: "15px"
+                    }}>
+                <Select
+                value={searchTitle}
+                displayEmpty
+                onChange={handleSearchChange}
+                sx={{ 
+                    color: "#050A30", 
+                    fontWeight: 600, 
+                    "& .MuiOutlinedInput-notchedOutline": { border: "none" } 
+                }}
+                >
+                <MenuItem value="">Search for Song Title</MenuItem>
+                {songs.map((song) => (
+                    <MenuItem key={song.id} value={song.id}>{song.title}</MenuItem>
+                ))}
+                </Select>
+            </FormControl>
+            </Box>
+        </Box>
+
+        {/* SECTION: DETAILED SONG LIST */}
+        {songs.map((song, index) => (
+          <Box 
+            key={`song-detail-${index}`} 
+            ref={(el) => (songRefs.current[index] = el)}
+            component={motion.div} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, amount: 0.2 }} 
+            variants={fadeInUp} 
+            sx={{ mb: 12, scrollMarginTop: "100px" }}
+          >
+            {/* 1. TITLE CENTERED ON TOP */}
+            <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", textAlign: "center", mb: 6 }}>
+              {song.title}
+            </Typography>
+
+            <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
+              
+                {/* 2. IMAGE ON LEFT (Strict 50% width) */}
+                <Box sx={{ width: { xs: "100%", md: "50%" }, flexShrink: 0 }}>
+                <Box 
+                    sx={{ 
+                    position: "relative", 
+                    width: "100%", 
+                    borderRadius: "20px", 
+                    overflow: "hidden", 
+                    boxShadow: "8px 8px 20px rgba(46, 58, 137, 0.8)" 
+                    }}
+                >
+                    <Box 
+                    component="img" 
+                    src={song.img} 
+                    alt={song.title} 
+                    sx={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover" }} 
+                    />
+                </Box>
+                </Box>
+              
+                {/* 3. TEXT & BUTTONS ON RIGHT (Strict 50% width) */}
+                <Box sx={{ width: { xs: "100%", md: "50%" }, textAlign: "left" }}>
+                    <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
+                    {song.verse}
+                    </Typography>
+                    <Typography variant="body1" sx={{ mb: 4, lineHeight: 1.8, opacity: 0.9, fontSize: "1.1rem" }}>
+                    {song.desc}
+                    </Typography>
+                    
+                    <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", width: "100%" }}>
+                    <Button 
+                        variant="contained" 
+                        sx={{ 
+                        flex: 1, 
+                        borderRadius: "30px", 
+                        bgcolor: "#E8EAF6", 
+                        color: "#050A30", 
+                        py: 1.5, 
+                        fontWeight: 700, 
+                        textTransform: "none", 
+                        "&:hover": { bgcolor: "#fff" } 
+                        }}
+                    >
+                        Learn More
+                    </Button>
+                    <Button 
+                        variant="contained" 
+                        sx={{ 
+                        flex: 1,
+                        borderRadius: "30px", 
+                        bgcolor: "#E8EAF6", 
+                        color: "#050A30",  
+                        py: 1.5, 
+                        fontWeight: 700, 
+                        textTransform: "none", 
+                        "&:hover": { bgcolor: "#fff" } 
+                        }}
+                    >
+                        Watch Now
+                    </Button>
+                    </Box>
+                </Box>
+
+            </Box>
+          </Box>
+        ))}
+
+      </Container>
+      <Footer />
+
+      <Zoom in={showButton}>
+        <Fab
+          onClick={scrollToTop}
+          size="small"
+          sx={{
+            position: "fixed",
+            bottom: { xs: 20, md: 30 },
+            right: { xs: 20, md: 30 },
+            bgcolor: "rgba(232, 234, 246, 0.8)",
+            color: "#050A30",
+            "&:hover": { bgcolor: "#fff" },
+            zIndex: 1000,
+          }}
+          aria-label="scroll back to top"
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Zoom>
+
+    </Box>
+  );
+};
+
+export default AlbumPage;
