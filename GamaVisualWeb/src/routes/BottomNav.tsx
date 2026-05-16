@@ -88,10 +88,10 @@ const Footer: React.FC = () => {
               sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
             >
               {[
-                { icon: <FaInstagram />, url: "#" },
-                { icon: <FaTiktok />, url: "#" },
+                { icon: <FaInstagram />, url: "https://www.instagram.com/gama.visual.ofc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
+                { icon: <FaTiktok />, url: "https://www.tiktok.com/@gamavisual.id?is_from_webapp=1&sender_device=pc" },
                 { icon: <FaYoutube />, url: "https://www.youtube.com/@Gama.Visual" },
-                { icon: <FaSpotify />, url: "#" },
+                { icon: <FaSpotify />, url: "https://open.spotify.com/artist/4VtoybpnsR8ZVHhFbXXUkr?si=8sQTB5zzS4u8bwdLixb-Ow" },
               ].map((social, index) => (
                 <Link 
                   key={index}

@@ -61,7 +61,9 @@ const memberData = {
       name: "Otniel",
       image: otnil,
       aspectRatio: "1/1",  
-      cropPos: "50% 55%",  
+      cropPos: "50% 55%",
+      // MODIFIKASI: MENAMBAHKAN LINK INSTAGRAM UNTUK OTNIEL
+      instagramUrl: "https://www.instagram.com/otniel_ot?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       bio: [
         "Iman Kristen mengajarkan kasih, pengharapan, dan keselamatan melalui Tuhan. Dalam setiap musim kehidupan, Tuhan selalu menyertai, menguatkan, dan memberikan damai yang melampaui segala akal.",
         "Tuhan tidak pernah terlambat, dan tidak pernah terlalu cepat—Dia selalu tepat waktu.",
@@ -72,7 +74,9 @@ const memberData = {
       name: "Tasya",
       image: tasya,
       aspectRatio: "1/1",  
-      cropPos: "50% 55%",      
+      cropPos: "50% 55%",
+      // MODIFIKASI: MENAMBAHKAN LINK INSTAGRAM UNTUK TASYA
+      instagramUrl: "https://www.instagram.com/_tasyatan?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       bio: [
         "Bernyanyi bagi kemuliaan-Nya. Aku hendak menyanyi bagi TUHAN selama aku hidup, aku hendak bermazmur bagi Allahku selagi aku ada.",
         "Tetap menjadi diri mu sendiri dan melayani Tuhan dengan kelebihan mu karena Tuhan mengasihi kamu.",
@@ -85,11 +89,13 @@ const memberData = {
       name: "Felix Galvin",
       image: felix,
       aspectRatio: "1/1",  
-      cropPos: "50% 30%",  
+      cropPos: "50% 30%",
+      // MODIFIKASI: MENAMBAHKAN LINK INSTAGRAM UNTUK FELIX
+      instagramUrl: "https://www.instagram.com/felixgalvin_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       bio: [
-        "Bernyanyi bagi kemuliaan-Nya. Aku hendak menyanyi bagi TUHAN selama aku hidup.",
-        "Tetap menjadi diri mu sendiri dan melayani Tuhan dengan kelebihan mu karena Tuhan mengasihi kamu.",
-        "Yeremia 29:11 - Sebab Aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu..."
+        "Lakukanlah segala sesuatu dengan kasih. Kasih adalah inti dari iman Kristen, dan melalui kasih kita mencerminkan karakter Tuhan kepada dunia.",
+        "Kemampuan diberikan Tuhan kepada setiap orang, maka dari itu jangan pernah takut untuk mencoba",
+        "Yeremia 29:11 - Sebab Aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan."
       ]
     }
   ],
@@ -99,7 +105,7 @@ const memberData = {
       image: thumbnail, 
       aspectRatio: "18/10", 
       cropPos: "50% 50%",       
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
+      desc: "Lagu ini mulai kami rancang di tahun 2025. Saat kami sedang menghadapi jalan buntu, bahkan tidak tau harus berbuat apa..." 
     },
     { 
       name: "Felix Galvin", 
@@ -290,7 +296,13 @@ const MemberPage: React.FC = () => {
                       objectPosition: item.cropPos || "center" 
                     }} 
                   />
-                  <IconButton sx={{ position: "absolute", top: 15, left: 15, bgcolor: "rgba(255,255,255,0.2)", color: "#fff", "&:hover": { bgcolor: "rgba(255,255,255,0.4)" } }}>
+                  {/* MODIFIKASI: MENERAPKAN LINK INSTAGRAM YANG BERBEDA UNTUK SETIAP FOUNDER */}
+                  <IconButton 
+                    component="a" // Mengubah komponen menjadi tag anchor (<a>)
+                    href={item.instagramUrl} // Memasukkan URL Instagram yang dinamis dari memberData
+                    target="_blank" // Membuka link di tab baru
+                    rel="noopener noreferrer" // Keamanan tambahan untuk tab baru
+                    sx={{ position: "absolute", top: 15, left: 15, bgcolor: "rgba(255,255,255,0.2)", color: "#fff", "&:hover": { bgcolor: "rgba(255,255,255,0.4)" } }}>
                     <InstagramIcon fontSize="small" />
                   </IconButton>
                 </Box>
@@ -351,7 +363,13 @@ const MemberPage: React.FC = () => {
                       objectPosition: item.cropPos || "center" 
                     }} 
                   />
-                  <IconButton sx={{ position: "absolute", top: 15, left: 15, bgcolor: "rgba(255,255,255,0.2)", color: "#fff", "&:hover": { bgcolor: "rgba(255,255,255,0.4)" } }}>
+                  {/* MODIFIKASI: MENERAPKAN LINK INSTAGRAM YANG BERBEDA UNTUK SETIAP SINGER */}
+                  <IconButton 
+                    component="a" // Mengubah komponen menjadi tag anchor (<a>)
+                    href={item.instagramUrl} // Memasukkan URL Instagram yang dinamis dari memberData
+                    target="_blank" // Membuka link di tab baru
+                    rel="noopener noreferrer" // Keamanan tambahan untuk tab baru
+                    sx={{ position: "absolute", top: 15, left: 15, bgcolor: "rgba(255,255,255,0.2)", color: "#fff", "&:hover": { bgcolor: "rgba(255,255,255,0.4)" } }}>
                     <InstagramIcon fontSize="small" />
                   </IconButton>
                 </Box>
@@ -404,7 +422,7 @@ const MemberPage: React.FC = () => {
                   width: "100%", 
                   objectFit: "cover",
                   aspectRatio: card.aspectRatio || "16/10", 
-                  objectPosition: card.cropPos || "center"   
+                  objectPosition: card.cropPos || "center"   
                 }} 
               />
               <Box sx={{ p: 4 }}>
