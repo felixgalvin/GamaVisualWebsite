@@ -164,54 +164,47 @@ const HomePage: React.FC = () => {
           sx={{ 
             mb: 15, 
             width: "100%",
-            // Menambahkan padding kiri-kanan agar tidak menempel tembok layar di HP
             px: { xs: 2, md: 0 } 
           }}
         >
-          <Grid 
-            container 
-            spacing={{ xs: 4, md: 10 }} // Jarak antar kolom diperlebar
-            alignItems="flex-start" 
+          <Box 
+            sx={{ 
+              display: "flex", 
+              flexDirection: { xs: "column", md: "row" }, 
+              gap: { xs: 4, md: 8 }, 
+              alignItems: "flex-start",
+              width: "100%"
+            }}
           >
-            {/* KOLOM KIRI: JUDUL */}
-            <Grid item xs={12} md={5}>
-              <Box sx={{ textAlign: "left" }}> {/* Memaksa teks rata kiri */}
-                <Typography 
-                  variant="h5" 
-                  sx={{ 
-                    fontWeight: 500, 
-                    opacity: 0.8,
-                    fontSize: { xs: "1.2rem", md: "1.5rem" },
-                    mb: 0.5 
-                  }}
-                >
-                  What is
-                </Typography>
-                <Typography 
-                  variant="h2" 
-                  sx={{ 
-                    fontWeight: 800, 
-                    lineHeight: 1.1,
-                    textTransform: "uppercase",
-                    fontSize: { xs: "2.5rem", md: "3.8rem" },
-                    letterSpacing: "-1px"
-                  }}
-                >
-                  GAMA VISUAL?
-                </Typography>
-              </Box>
-            </Grid>
+            {/* KOLOM KIRI: JUDUL (Strict 40%-50% Width) */}
+            <Box sx={{ width: { xs: "100%", md: "45%" }, flexShrink: 0, textAlign: "left" }}>
+              <Typography 
+                variant="h5" 
+                sx={{ 
+                  fontWeight: 500, 
+                  opacity: 0.8,
+                  fontSize: { xs: "3.2rem", md: "3.5rem" },
+                  mb: 0.5 
+                }}
+              >
+                What is
+              </Typography>
+              <Typography 
+                variant="h2" 
+                sx={{ 
+                  fontWeight: 800, 
+                  lineHeight: 1.1,
+                  textTransform: "uppercase",
+                  fontSize: { xs: "4.5rem", md: "5.5rem" },
+                  letterSpacing: "-1px"
+                }}
+              >
+                GAMA VISUAL?
+              </Typography>
+            </Box>
 
-            {/* KOLOM KANAN: DESKRIPSI & TOMBOL */}
-            <Grid 
-              item 
-              xs={12} 
-              md={7} 
-              sx={{ 
-                textAlign: "left", // Memaksa deskripsi rata kiri
-                pt: { md: 8 }      // Menurunkan teks agar sejajar dengan kata "GAMA"
-              }}
-            >
+            {/* KOLOM KANAN: DESKRIPSI & TOMBOL (Sisa lebar ruang / 55%) */}
+            <Box sx={{ width: { xs: "100%", md: "55%" }, textAlign: "left", pt: { md: 1.5 } }}>
               <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
                 Gama Visual adalah komunitas kreatif yang berjalan dengan berkolaborasi serta mewadahi generasi muda yang memiliki talenta melalui karya musik yang membawa pesan kasih dan pengharapan.
               </Typography>
@@ -236,8 +229,8 @@ const HomePage: React.FC = () => {
               >
                 Learn More
               </Button>
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
         </Box>
 
         {/* 5. BEHIND THE SCENE SECTION */}
