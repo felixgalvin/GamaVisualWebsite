@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 
-// IMAGE IMPORTS (Tetap seperti sebelumnya)
+// IMAGE IMPORTS 
 import coverBlur from "../assets/CoverBlur.png"; 
 import inner1 from "../assets/InnerPeace.png";
 import inner2 from "../assets/InnerPeace2.png";
