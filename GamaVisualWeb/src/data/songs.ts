@@ -1,7 +1,7 @@
-import coverImg from "../assets/CoverBlur.png";
 import artistImg from "../assets/Tasya.jpeg";
 import bts1 from "../assets/SiaranRadioMei.jpeg";
 import bts2 from "../assets/SiaranRadioMei.jpeg";
+import KasihMuTakBerubah from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
 
 export interface Song {
   id: string;
@@ -33,7 +33,7 @@ export const songCatalog: Song[] = [
     artistName: "TASYA",
     artistBio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
     images: {
-      cover: coverImg,
+      cover: KasihMuTakBerubah,
       bts1: bts1,
       bts2: bts2,
       artist: artistImg,

@@ -7,7 +7,7 @@ import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 
 // Import your data store
-import { songCatalog } from "../data/songs"; 
+import { songCatalog } from "../data/songs";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -47,19 +47,19 @@ const SongPage: React.FC = () => {
           <Typography variant="body1" sx={{ mb: 6, fontSize: "1.2rem", opacity: 0.8, maxWidth: "500px", zIndex: 1 }}>
             Maaf, sepertinya lagu yang Anda cari tidak ada atau URL yang dimasukkan salah.
           </Typography>
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             onClick={() => navigate('/album')}
-            sx={{ 
-              borderRadius: "30px", 
-              bgcolor: "#E8EAF6", 
-              color: "#050A30", 
-              px: 5, 
-              py: 1.5, 
-              fontWeight: 700, 
-              textTransform: "none", 
+            sx={{
+              borderRadius: "30px",
+              bgcolor: "#E8EAF6",
+              color: "#050A30",
+              px: 5,
+              py: 1.5,
+              fontWeight: 700,
+              textTransform: "none",
               zIndex: 1,
-              "&:hover": { bgcolor: "#fff" } 
+              "&:hover": { bgcolor: "#fff" }
             }}
           >
             Kembali ke Album
@@ -75,7 +75,7 @@ const SongPage: React.FC = () => {
       <Navbar />
 
       <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
-        
+
         {/* HERO HEADER & MAIN COVER */}
         <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp} sx={{ textAlign: "center", mb: 8 }}>
           {/* Replaced hardcoded text with dynamic data */}
@@ -87,7 +87,7 @@ const SongPage: React.FC = () => {
           </Typography>
 
           <Box sx={{ width: "100%", borderRadius: "24px", overflow: "hidden", boxShadow: "0px 10px 30px rgba(0,0,0,0.5)", lineHeight: 0 }}>
-            <Box component="img" src={currentSong.images.cover} alt="Main Cover" sx={{ width: "100%", height: { xs: "250px", md: "500px" }, objectFit: "cover", display: "block" }} />
+            <Box component="img" src={currentSong.images.cover} alt="Main Cover" sx={{ width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block" }} />
           </Box>
         </Box>
 
@@ -149,7 +149,7 @@ const SongPage: React.FC = () => {
         </Box>
 
       </Container>
-      
+
       <Footer />
 
       {/* SCROLL TO TOP BUTTON */}
