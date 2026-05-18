@@ -11,7 +11,6 @@ import Footer from "../routes/BottomNav";
 import coverBlur from "../assets/CoverBlur.png"; 
 import inner1 from "../assets/InnerPeace.png";
 import inner2 from "../assets/InnerPeace2.png";
-import inner3 from "../assets/InnerPeace3.png";
 import inner4 from "../assets/InnerPeace4.png";
 import surrend1 from "../assets/SurrenderTrust.png";
 import surrend2 from "../assets/SurrenderTrust2.png";
@@ -32,8 +31,8 @@ const fadeInUp = {
 };
 
 const quoteData: { [key: string]: string[] } = {
-  "main-album": [coverBlur, inner1, inner2, inner3, inner4, surrend1, surrend2, surrend3, resil1, resil2, resil3, love1, love2, love3, grat1, grat2, grat3],
-  "inner-peace": [inner1, inner2, inner3, inner4],
+  "main-album": [coverBlur, inner1, inner2, inner4, surrend1, surrend2, surrend3, resil1, resil2, resil3, love1, love2, love3, grat1, grat2, grat3],
+  "inner-peace": [inner1, inner2, inner4],
   "surrender": [surrend1, surrend2, surrend3],
   "resilience": [resil1, resil2, resil3],
   "love": [love1, love2, love3],
