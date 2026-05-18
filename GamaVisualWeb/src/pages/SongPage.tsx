@@ -14,6 +14,11 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1.5 } }
+};
+
 const SongPage: React.FC = () => {
   const { songId } = useParams<{ songId: string }>();
   const navigate = useNavigate();
@@ -77,14 +82,16 @@ const SongPage: React.FC = () => {
       <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
 
         {/* HERO HEADER & MAIN COVER */}
-        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp} sx={{ textAlign: "center", mb: 8 }}>
+        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ textAlign: "center", mb: 8 }}>
           {/* Replaced hardcoded text with dynamic data */}
-          <Typography variant="h3" sx={{ fontWeight: 800, mb: 1 }}>
-            {currentSong.title}
-          </Typography>
-          <Typography variant="h6" sx={{ fontWeight: 600, opacity: 0.9, mb: 4 }}>
-            {currentSong.releaseInfo}
-          </Typography>
+          <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
+            <Typography variant="h3" sx={{ fontWeight: 800, mb: 1 }}>
+              {currentSong.title}
+            </Typography>
+            <Typography variant="h6" sx={{ fontWeight: 600, opacity: 0.9, mb: 4 }}>
+              {currentSong.releaseInfo}
+            </Typography>
+          </Box>
 
           <Box sx={{ width: "100%", borderRadius: "24px", overflow: "hidden", boxShadow: "0px 10px 30px rgba(0,0,0,0.5)", lineHeight: 0 }}>
             <Box component="img" src={currentSong.images.cover} alt="Main Cover" sx={{ width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block" }} />

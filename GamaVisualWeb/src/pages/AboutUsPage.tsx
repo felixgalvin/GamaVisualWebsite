@@ -18,6 +18,11 @@ const fadeInUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
+const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1.5 } }
+};
+
 const heroImages = [heroImg, heroImg, heroImg];
 
 const activitiesData = [
@@ -96,7 +101,7 @@ const AboutUsPage: React.FC = () => {
                     component={motion.div}
                     initial="hidden"
                     animate="visible"
-                    variants={fadeInUp}
+                    variants={fadeIn}
                     sx={{ position: "relative", width: "100%", mb: 12 }}
                 >
                     <Box
@@ -110,9 +115,11 @@ const AboutUsPage: React.FC = () => {
                             pointerEvents: "none"
                         }}
                     >
-                        <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", letterSpacing: 2 }}>
-                            ABOUT US
-                        </Typography>
+                        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
+                            <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", letterSpacing: 2 }}>
+                                ABOUT US
+                            </Typography>
+                        </Box>
                     </Box>
 
                     <IconButton onClick={() => scrollCarousel("left")} sx={{ position: "absolute", left: { xs: 10, md: 30 }, top: "50%", transform: "translateY(-50%)", bgcolor: "rgba(255,255,255,0.7)", color: "#000", zIndex: 10, "&:hover": { bgcolor: "#fff" } }}>
