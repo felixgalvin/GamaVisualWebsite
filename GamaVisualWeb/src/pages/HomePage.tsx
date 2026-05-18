@@ -19,6 +19,8 @@ const HomePage: React.FC = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const handleScroll = () => {
       if (window.scrollY > window.innerHeight) {
         setShowButton(true);

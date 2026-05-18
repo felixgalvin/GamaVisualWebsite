@@ -194,6 +194,8 @@ const QuotePage: React.FC = () => {
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const handleScroll = () => setShowButton(window.scrollY > 600);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
