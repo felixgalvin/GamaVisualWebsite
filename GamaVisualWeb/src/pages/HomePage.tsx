@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Container, Grid, Button, Fab, Zoom } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { motion } from "framer-motion";
 import Navbar from "../routes/NavBar";
@@ -14,6 +15,7 @@ const fadeInUp = {
 };
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
@@ -215,6 +217,7 @@ const HomePage: React.FC = () => {
 
               <Button 
                 variant="contained" 
+                onClick={() => navigate('/about')}
                 sx={{ 
                   borderRadius: "30px", 
                   bgcolor: "#E8EAF6", 

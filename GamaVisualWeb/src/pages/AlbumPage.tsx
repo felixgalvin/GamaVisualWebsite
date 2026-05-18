@@ -19,6 +19,11 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1.5 } }
+};
+
 // 2. MAKE SURE THESE IDs MATCH YOUR songCatalog IDs!
 // E.g., if songCatalog has id: "kasih-mu-tak-berubah", make sure it matches here so the router can find it.
 const songs = [
@@ -157,7 +162,7 @@ const AlbumPage: React.FC = () => {
 
         <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
     
-        <Box sx={{ position: "relative", width: "100%", mb: 8 }}>
+        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 8 }}>
             
             <IconButton 
             onClick={() => scrollCarousel("left")}
@@ -287,6 +292,7 @@ const AlbumPage: React.FC = () => {
                 Setiap lagu memiliki cerita—tentang perjalanan, harapan, dan makna yang ingin dibagikan.
             </Typography>
             <Button
+                href="https://open.spotify.com/artist/4VtoybpnsR8ZVHhFbXXUkr?si=8sQTB5zzS4u8bwdLixb-Ow"
                 variant="contained"
                 sx={{
                 borderRadius: "30px",
@@ -394,6 +400,7 @@ const AlbumPage: React.FC = () => {
                         Learn More
                     </Button>
                     <Button 
+                        href="https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7"
                         variant="contained" 
                         sx={{ 
                         flex: 1,

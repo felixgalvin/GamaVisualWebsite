@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Box, Typography, Container, Button, Fab, Zoom, IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -24,6 +25,11 @@ import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1.5 } }
 };
 
 const memberData = {
@@ -104,7 +110,8 @@ const memberData = {
       name: "Tasya", 
       image: thumbnail, 
       aspectRatio: "18/10", 
-      cropPos: "50% 50%",       
+      cropPos: "50% 50%",
+      songId: "kasih-mu-tak-berubah",
       desc: "Lagu ini mulai kami rancang di tahun 2025. Saat kami sedang menghadapi jalan buntu, bahkan tidak tau harus berbuat apa..." 
     },
     { 
@@ -132,6 +139,7 @@ const renderBioIcon = (index: number) => {
 };
 
 const MemberPage: React.FC = () => {
+  const navigate = useNavigate();
   const [showButton, setShowButton] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -192,7 +200,7 @@ const MemberPage: React.FC = () => {
       <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
         
         {/* --- CAROUSEL SLIDER HEADER --- */}
-        <Box sx={{ position: "relative", width: "100%", mb: 10 }}>
+        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 10 }}>
           <IconButton 
             onClick={() => scrollCarousel("left")}
             sx={{ 
@@ -238,7 +246,7 @@ const MemberPage: React.FC = () => {
                 {slide.title && (
                   <Box sx={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(5, 10, 48, 0.4), rgba(5, 10, 48, 0.75))", zIndex: 1 }} />
                 )}
-                <Box sx={{ zIndex: 2, px: 4, maxWidth: "800px" }}>
+                <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp} sx={{ zIndex: 2, px: 4, maxWidth: "800px" }}>
                   <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", fontSize: { xs: "2rem", md: "4rem" }, mb: 2 }}>
                     {slide.title}
                   </Typography>
@@ -428,7 +436,7 @@ const MemberPage: React.FC = () => {
               <Box sx={{ p: 4 }}>
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>{card.name}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.6, mb: 4, minHeight: "60px", lineHeight: 1.6 }}>{card.desc}</Typography>
-                <Button variant="contained" sx={{ borderRadius: "30px", bgcolor: "#E8EAF6", color: "#050A30", fontWeight: 700, textTransform: "none", px: 5, py: 1.2, "&:hover": { bgcolor: "#fff" } }}>
+                <Button variant="contained" onClick={() => card.songId && navigate(`/album/song/${card.songId}`)} sx={{ borderRadius: "30px", bgcolor: "#E8EAF6", color: "#050A30", fontWeight: 700, textTransform: "none", px: 5, py: 1.2, "&:hover": { bgcolor: "#fff" } }}>
                   Learn More
                 </Button>
               </Box>

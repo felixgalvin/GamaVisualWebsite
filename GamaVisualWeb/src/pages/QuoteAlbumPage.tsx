@@ -26,6 +26,11 @@ import grat1 from "../assets/Gratitude.png";
 import grat2 from "../assets/Gratitude2.png";
 import grat3 from "../assets/Gratitude3.png";
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
 const quoteData: { [key: string]: string[] } = {
   "main-album": [coverBlur, inner1, inner2, inner3, inner4, surrend1, surrend2, surrend3, resil1, resil2, resil3, love1, love2, love3, grat1, grat2, grat3],
   "inner-peace": [inner1, inner2, inner3, inner4],
@@ -125,24 +130,26 @@ const QuoteSlider = ({
             background: "linear-gradient(to bottom, rgba(5, 10, 48, 0.3), rgba(5, 10, 48, 0.6))",
             zIndex: 1 
           }}>
-            <Typography 
-              variant="h2" 
-              sx={{ 
-                fontWeight: 900, 
-                textTransform: "uppercase", 
-                letterSpacing: 4,
-                fontSize: { xs: "2.5rem", md: "4rem" },
-                textShadow: "2px 2px 15px rgba(0,0,0,0.7)"
-              }}
-            >
-              {title}
-            </Typography>
-            <Typography 
-              variant="subtitle1" 
-              sx={{ opacity: 0.9, maxWidth: "600px", mt: 2, px: 2, fontWeight: 500 }}
-            >
-              Kasih dan Pengharapan di Dalam Dia.
-            </Typography>
+            <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
+              <Typography 
+                variant="h2" 
+                sx={{ 
+                  fontWeight: 900, 
+                  textTransform: "uppercase", 
+                  letterSpacing: 4,
+                  fontSize: { xs: "2.5rem", md: "4rem" },
+                  textShadow: "2px 2px 15px rgba(0,0,0,0.7)"
+                }}
+              >
+                {title}
+              </Typography>
+              <Typography 
+                variant="subtitle1" 
+                sx={{ opacity: 0.9, maxWidth: "600px", mt: 2, px: 2, fontWeight: 500 }}
+              >
+                Kasih dan Pengharapan di Dalam Dia.
+              </Typography>
+            </Box>
           </Box>
         )}
 
