@@ -23,9 +23,12 @@ const SongPage: React.FC = () => {
   const currentSong = songCatalog.find(song => song.id === songId);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const handleScroll = () => {
       setShowButton(window.scrollY > window.innerHeight);
     };
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

@@ -68,6 +68,8 @@ const AlbumPage: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const handleScroll = () => {
       setShowButton(window.scrollY > window.innerHeight);
     };
