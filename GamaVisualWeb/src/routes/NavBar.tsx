@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
               flexShrink: 0 
             }}
           >
-            <img src="LogoGama.PNG" alt="Gama Visual" style={{ height: '40px' }} /> 
+            <img src="/LogoGama.PNG" alt="Gama Visual" style={{ height: '40px' }} /> 
           </Box>
 
           {/* Navigation Items */}
