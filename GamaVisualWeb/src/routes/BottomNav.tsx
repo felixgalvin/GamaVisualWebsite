@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
             >
               <Box
                 component="img"
-                src="LogoGama.PNG"
+                src="/LogoGama.PNG"
                 alt="Gama Visual"
                 sx={{
                   width: "100%",

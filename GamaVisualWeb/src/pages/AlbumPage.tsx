@@ -11,14 +11,19 @@ import coverImg from "../assets/CoverBlur.png";
 import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
 import faith from "../assets/ResilienceFaith2.png";
 
+// 1. IMPORT USE NAVIGATE
+import { useNavigate } from "react-router-dom"; 
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
+// 2. MAKE SURE THESE IDs MATCH YOUR songCatalog IDs!
+// E.g., if songCatalog has id: "kasih-mu-tak-berubah", make sure it matches here so the router can find it.
 const songs = [
   {
-    id: "kasihmu",
+    id: "kasih-mu-tak-berubah", 
     title: "KASIH-MU TAK BERUBAH",
     verse: "Mazmur 37:23-24 (TB)",
     desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
@@ -26,7 +31,7 @@ const songs = [
     artist: "Tasya"
   },
   {
-    id: "doa",
+    id: "satu-dalam-doa",
     title: "SATU DALAM DOA",
     verse: "Mazmur 37:23-24 (TB)",
     desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
@@ -34,7 +39,7 @@ const songs = [
     artist: "Tasya"
   },
   {
-    id: "kasihmu2",
+    id: "kasih-mu-tak-berubah-2",
     title: "KASIH-MU TAK BERUBAH",
     verse: "Mazmur 37:23-24 (TB)",
     desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
@@ -42,7 +47,7 @@ const songs = [
     artist: "Tasya"
   },
   {
-    id: "doa2",
+    id: "satu-dalam-doa-2",
     title: "SATU DALAM DOA",
     verse: "Mazmur 37:23-24 (TB)",
     desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
@@ -52,6 +57,9 @@ const songs = [
 ];
 
 const AlbumPage: React.FC = () => {
+  // 3. INITIALIZE NAVIGATE HOOK
+  const navigate = useNavigate(); 
+  
   const [showButton, setShowButton] = useState(false);
   const [searchTitle, setSearchTitle] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0); 
@@ -201,7 +209,6 @@ const AlbumPage: React.FC = () => {
             }}
             >
             {songs.map((song, index) => (
-                // SECTION: CAROUSEL ITEM
                 <Box
                 key={`carousel-${index}`}
                 onClick={() => scrollToSong(index)}
@@ -335,14 +342,12 @@ const AlbumPage: React.FC = () => {
             variants={fadeInUp} 
             sx={{ mb: 12, scrollMarginTop: "100px" }}
           >
-            {/* 1. TITLE CENTERED ON TOP */}
             <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", textAlign: "center", mb: 6 }}>
               {song.title}
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
               
-                {/* 2. IMAGE ON LEFT (Strict 50% width) */}
                 <Box sx={{ width: { xs: "100%", md: "50%" }, flexShrink: 0 }}>
                 <Box 
                     sx={{ 
@@ -362,7 +367,6 @@ const AlbumPage: React.FC = () => {
                 </Box>
                 </Box>
               
-                {/* 3. TEXT & BUTTONS ON RIGHT (Strict 50% width) */}
                 <Box sx={{ width: { xs: "100%", md: "50%" }, textAlign: "left" }}>
                     <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
                     {song.verse}
@@ -372,8 +376,10 @@ const AlbumPage: React.FC = () => {
                     </Typography>
                     
                     <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", width: "100%" }}>
+                    {/* 4. LINK THE BUTTON TO THE DYNAMIC ROUTE */}
                     <Button 
                         variant="contained" 
+                        onClick={() => navigate(`/album/song/${song.id}`)}
                         sx={{ 
                         flex: 1, 
                         borderRadius: "30px", 
