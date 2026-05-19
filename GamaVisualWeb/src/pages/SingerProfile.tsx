@@ -199,14 +199,14 @@ const MemberPage: React.FC = () => {
     <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
       <Navbar />
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
+      <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
         
         {/* --- CAROUSEL SLIDER HEADER --- */}
         <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 10 }}>
           <IconButton 
             onClick={() => scrollCarousel("left")}
             sx={{ 
-              position: "absolute", left: 30, top: "50%", transform: "translateY(-50%)",
+              position: "absolute", left: { xs: 12, md: 30 }, top: "50%", transform: "translateY(-50%)",
               bgcolor: "rgba(255,255,255,0.9)", opacity: 0.7, color: "#000", zIndex: 10,
               boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", "&:hover": { bgcolor: "#fff", opacity: 1 } 
             }}
@@ -217,7 +217,7 @@ const MemberPage: React.FC = () => {
           <IconButton 
             onClick={() => scrollCarousel("right")}
             sx={{ 
-              position: "absolute", right: 30, top: "50%", transform: "translateY(-50%)",
+              position: "absolute", right: { xs: 12, md: 30 }, top: "50%", transform: "translateY(-50%)",
               bgcolor: "rgba(255,255,255,0.9)", opacity: 0.7, color: "#000", zIndex: 10,
               boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", "&:hover": { bgcolor: "#fff", opacity: 1 } 
             }}
@@ -435,10 +435,10 @@ const MemberPage: React.FC = () => {
                   objectPosition: card.cropPos || "center"   
                 }} 
               />
-              <Box sx={{ p: 4 }}>
+              <Box sx={{ p: { xs: 3, md: 4 } }}>
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>{card.name}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.6, mb: 4, minHeight: "60px", lineHeight: 1.6 }}>{card.desc}</Typography>
-                <Button variant="contained" onClick={() => card.songId && navigate(`/album/song/${card.songId}`)} sx={{ borderRadius: "30px", bgcolor: "#E8EAF6", color: "#050A30", fontWeight: 700, textTransform: "none", px: 5, py: 1.2, "&:hover": { bgcolor: "#fff" } }}>
+                <Button variant="contained" onClick={() => card.songId && navigate(`/album/song/${card.songId}`)} sx={{ width: { xs: "100%", md: "auto" }, borderRadius: "30px", bgcolor: "#E8EAF6", color: "#050A30", fontWeight: 700, textTransform: "none", px: 5, py: 1.2, "&:hover": { bgcolor: "#fff" } }}>
                   Learn More
                 </Button>
               </Box>

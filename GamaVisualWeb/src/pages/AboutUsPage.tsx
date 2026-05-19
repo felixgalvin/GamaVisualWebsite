@@ -96,7 +96,7 @@ const AboutUsPage: React.FC = () => {
         <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
             <Navbar />
 
-            <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
+            <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
 
                 {/* 1. CAROUSEL HERO SECTION */}
                 <Box
@@ -118,7 +118,7 @@ const AboutUsPage: React.FC = () => {
                         }}
                     >
                         <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
-                            <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", letterSpacing: 2 }}>
+                            <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", letterSpacing: 2, fontSize: { xs: "2.4rem", md: "4rem" } }}>
                                 ABOUT US
                             </Typography>
                         </Box>
@@ -192,7 +192,7 @@ const AboutUsPage: React.FC = () => {
                     sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, mb: 12 }}
                 >
                     <Box sx={{ flex: 1 }}>
-                        <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", textAlign: "left" }}>
+                        <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", textAlign: "left", fontSize: { xs: "2rem", md: "3rem" } }}>
                             GAMA VISUAL
                         </Typography>
                     </Box>
@@ -256,7 +256,7 @@ const AboutUsPage: React.FC = () => {
                     viewport={{ once: true }}
                     variants={fadeInUp}
                 >
-                    <Typography variant="h3" sx={{ fontWeight: 800, textAlign: "center", textTransform: "uppercase", mb: 6 }}>
+                    <Typography variant="h3" sx={{ fontWeight: 800, textAlign: "center", textTransform: "uppercase", mb: 6, fontSize: { xs: "2rem", md: "2.8rem" } }}>
                         ACTIVITY
                     </Typography>
 

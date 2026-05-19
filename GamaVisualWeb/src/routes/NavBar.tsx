@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            height: "80px", // Tinggi navbar
+            height: { xs: "70px", md: "80px" },
             px: { xs: 1, md: 2 },
           }}
         >
@@ -56,7 +56,9 @@ const Navbar: React.FC = () => {
           <Box
             sx={{
               display: "flex",
-              gap: { md: 2, lg: 7 }, 
+              flexWrap: "wrap",
+              justifyContent: { xs: "center", md: "flex-end" },
+              gap: { xs: 0.5, sm: 1, md: 2, lg: 7 },
               alignItems: "center",
             }}
           >
@@ -67,10 +69,12 @@ const Navbar: React.FC = () => {
                 sx={{
                   color: "#fff",
                   textTransform: "none",
-                  fontSize: "0.95rem",
+                  fontSize: { xs: "0.72rem", sm: "0.85rem", md: "0.95rem" },
                   fontWeight: 400,
                   opacity: 0.8,
                   whiteSpace: "nowrap", // Agar teks tidak turun ke bawah
+                  minWidth: "auto",
+                  px: { xs: 0.5, sm: 1, md: 1.5 },
                   transition: "all 0.3s ease",
                   "&:hover": {
                     backgroundColor: "transparent",

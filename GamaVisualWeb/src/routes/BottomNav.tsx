@@ -8,16 +8,15 @@ const Footer: React.FC = () => {
       component="footer"
       sx={{
         width: "100%",
-        // Gradient sesuai gambar referensi
         background: "linear-gradient(135deg, #7FA9FB 0%, #A1C4FD 100%)",
         color: "#fff",
-        pt: 7,
-        pb: 3,
+        pt: { xs: 6, md: 7 },
+        pb: { xs: 4, md: 3 },
       }}
     >
       <Container maxWidth="lg">
         {/* Gunakan justifyContent="space-between" agar tiap kolom punya jarak maksimal */}
-        <Grid container spacing={4} sx={{ justifyContent: "space-between", alignItems: "flex-start" }}>
+        <Grid container spacing={{ xs: 3, md: 4 }} sx={{ justifyContent: "space-between", alignItems: "flex-start" }}>
           
           {/* Kolom 1: Logo (Diberi ruang md: 4) */}
           <Grid item xs={12} md={4}>
@@ -33,7 +32,7 @@ const Footer: React.FC = () => {
                 alt="Gama Visual"
                 sx={{
                   width: "100%",
-                  maxWidth: "220px",
+                  maxWidth: { xs: "180px", md: "220px" },
                   height: "auto",
                   filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))",
                 }}
@@ -84,7 +83,8 @@ const Footer: React.FC = () => {
             </Typography>
             <Stack 
               direction="row" 
-              spacing={2} 
+              flexWrap="wrap"
+              spacing={{ xs: 1.5, md: 2 }} 
               sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
             >
               {[

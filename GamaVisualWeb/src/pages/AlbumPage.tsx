@@ -162,7 +162,7 @@ const AlbumPage: React.FC = () => {
     <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
         <Navbar />
 
-        <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
+        <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
     
         <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 8 }}>
             
@@ -170,7 +170,7 @@ const AlbumPage: React.FC = () => {
             onClick={() => scrollCarousel("left")}
             sx={{ 
                 position: "absolute", 
-                left: 30, 
+                left: { xs: 12, md: 30 }, 
                 top: "50%",
                 transform: "translateY(-50%)",
                 bgcolor: "rgba(255,255,255,0.9)", 
@@ -188,7 +188,7 @@ const AlbumPage: React.FC = () => {
             onClick={() => scrollCarousel("right")}
             sx={{ 
                 position: "absolute", 
-                right: 30, 
+                right: { xs: 12, md: 30 }, 
                 top: "50%",
                 transform: "translateY(-50%)",
                 bgcolor: "rgba(255,255,255,0.9)",
@@ -266,7 +266,7 @@ const AlbumPage: React.FC = () => {
                     cursor: "pointer",
                     transition: "all 0.3s ease",
                     "&:hover": {
-                    backgroundColor: "#fff"
+                    backgroundColor: "#ffffff"
                     }
                 }}
                 />
@@ -287,7 +287,7 @@ const AlbumPage: React.FC = () => {
             }}
         >
             <Box sx={{ textAlign: "left", flex: 1 }}> 
-            <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 2}}>
+            <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 2, fontSize: { xs: "2.2rem", md: "3rem" }}}>
                 EXPLORE OUR <br/> MUSIC!
             </Typography>
             <Typography variant="body1" sx={{ mb: 4, opacity: 0.9, maxWidth: "600px", fontSize: "1.1rem" }}>
