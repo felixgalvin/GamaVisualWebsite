@@ -81,10 +81,10 @@ const HomePage: React.FC = () => {
           variants={fadeInUp}
           sx={{ textAlign: "center", mb: { xs: 10, md: 15 }, px: { xs: 2, md: 10 } }}
         >
-          <Typography variant="h5" sx={{ fontStyle: "italic", mb: 2, fontSize: { xs: "1rem", md: "1.2rem" } }}>
+          <Typography variant="h5" sx={{ fontStyle: "italic", mb: 2, fontSize: { xs: "1rem", md: "1.7rem" } }}>
             "Apa pun juga yang kamu perbuat, perbuatlah dengan segenap hatimu seperti untuk Tuhan dan bukan untuk manusia."
           </Typography>
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>Kolose 3 : 23</Typography>
+          <Typography variant="subtitle1" sx={{ fontWeight: 700, fontSize: { xs: "0.5rem", md: "1.2rem" } }}>Kolose 3 : 23</Typography>
         </Box>
 
         {/* 3. VIDEO/ALBUM SECTION */}
@@ -201,7 +201,8 @@ const HomePage: React.FC = () => {
                   lineHeight: 1.1,
                   textTransform: "uppercase",
                   fontSize: { xs: "4.5rem", md: "5.5rem" },
-                  letterSpacing: "-1px"
+                  letterSpacing: "-1px",
+                  color: "#f3eeee"
                 }}
               >
                 GAMA VISUAL?

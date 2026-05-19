@@ -249,7 +249,7 @@ const MemberPage: React.FC = () => {
                   <Box sx={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(5, 10, 48, 0.4), rgba(5, 10, 48, 0.75))", zIndex: 1 }} />
                 )}
                 <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp} sx={{ zIndex: 2, px: 4, maxWidth: "800px" }}>
-                  <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", fontSize: { xs: "2rem", md: "4rem" }, mb: 2 }}>
+                  <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", fontSize: { xs: "2rem", md: "4rem" }, mb: 2, color: "#ffffff" }}>
                     {slide.title}
                   </Typography>
                   <Typography variant="subtitle1" sx={{ opacity: 0.9, fontSize: { xs: "0.9rem", md: "1.1rem" } }}>
@@ -312,7 +312,7 @@ const MemberPage: React.FC = () => {
                     href={item.instagramUrl} // Memasukkan URL Instagram yang dinamis dari memberData
                     target="_blank" // Membuka link di tab baru
                     rel="noopener noreferrer" // Keamanan tambahan untuk tab baru
-                    sx={{ position: "absolute", top: 15, left: 15, bgcolor: "rgba(255,255,255,0.2)", color: "#fff", "&:hover": { bgcolor: "rgba(255,255,255,0.4)" } }}>
+                    sx={{ position: "absolute", top: 15, left: 15, bgcolor: "rgba(255,255,255,0.2)", color: "#000000", "&:hover": { bgcolor: "rgba(255,255,255,0.4)" } }}>
                     <InstagramIcon fontSize="small" />
                   </IconButton>
                 </Box>
@@ -379,7 +379,7 @@ const MemberPage: React.FC = () => {
                     href={item.instagramUrl} // Memasukkan URL Instagram yang dinamis dari memberData
                     target="_blank" // Membuka link di tab baru
                     rel="noopener noreferrer" // Keamanan tambahan untuk tab baru
-                    sx={{ position: "absolute", top: 15, left: 15, bgcolor: "rgba(255,255,255,0.2)", color: "#fff", "&:hover": { bgcolor: "rgba(255,255,255,0.4)" } }}>
+                    sx={{ position: "absolute", top: 15, left: 15, bgcolor: "rgba(255,255,255,0.2)", color: "#000000", "&:hover": { bgcolor: "rgba(255,255,255,0.4)" } }}>
                     <InstagramIcon fontSize="small" />
                   </IconButton>
                 </Box>

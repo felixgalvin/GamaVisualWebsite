@@ -68,6 +68,7 @@ const ContactUsPage: React.FC = () => {
                 mb: 3,
                 fontSize: { xs: "2.4rem", md: "4rem" },
                 lineHeight: 1.05,
+                color: "#ffffff"
               }}
             >
               Dukung Karya Penuh Makna
@@ -87,7 +88,7 @@ const ContactUsPage: React.FC = () => {
                 fontSize: { xs: "1rem", md: "1.1rem" }
               }}
             >
-              Dan di balik setiap karya yang bermakna, selalu ada dukungan yang membuat perjalanan itu terus berjalan.
+              Di balik setiap karya yang bermakna, selalu ada dukungan yang membuat perjalanan itu terus berjalan.
             </Typography>
             <Typography
               variant="body1"

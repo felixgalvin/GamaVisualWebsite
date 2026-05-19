@@ -118,7 +118,7 @@ const AboutUsPage: React.FC = () => {
                         }}
                     >
                         <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
-                            <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", letterSpacing: 2, fontSize: { xs: "2.4rem", md: "4rem" } }}>
+                            <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", letterSpacing: 2, fontSize: { xs: "2.4rem", md: "4rem" }, color: "#ffffff" }}>
                                 ABOUT US
                             </Typography>
                         </Box>

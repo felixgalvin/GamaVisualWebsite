@@ -149,7 +149,7 @@ const SongPage: React.FC = () => {
             </Box>
           </Box>
           <Box sx={{ width: { xs: "100%", md: "66.666%" } }}>
-            <Typography variant="h2" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 3 }}>
+            <Typography variant="h2" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 3, color: "#ffffff" }}>
               {currentSong.artistName}
             </Typography>
             <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
