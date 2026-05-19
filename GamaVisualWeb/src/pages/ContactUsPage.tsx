@@ -25,7 +25,7 @@ const ContactUsPage: React.FC = () => {
         animate="visible"
         variants={fadeInUp}
         sx={{
-          height: "100vh",
+          minHeight: { xs: "85vh", md: "100vh" },
           width: "100%",
           backgroundImage: `url('${coverBg}')`,
           backgroundSize: "cover",
@@ -66,7 +66,7 @@ const ContactUsPage: React.FC = () => {
                 fontWeight: 800,
                 letterSpacing: 1,
                 mb: 3,
-                fontSize: { xs: "2.8rem", md: "4rem" },
+                fontSize: { xs: "2.4rem", md: "4rem" },
                 lineHeight: 1.05,
               }}
             >
@@ -78,12 +78,13 @@ const ContactUsPage: React.FC = () => {
             <Typography
               variant="h6"
               sx={{
-                maxWidth: "720px",
+                maxWidth: { xs: "100%", md: "720px" },
                 mx: "auto",
                 mb: 2,
                 fontWeight: 400,
                 lineHeight: 1.8,
                 opacity: 0.9,
+                fontSize: { xs: "1rem", md: "1.1rem" }
               }}
             >
               Dan di balik setiap karya yang bermakna, selalu ada dukungan yang membuat perjalanan itu terus berjalan.

@@ -46,7 +46,7 @@ const SongPage: React.FC = () => {
       <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", display: "flex", flexDirection: "column" }}>
         <Navbar />
         <Container maxWidth="md" sx={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", py: 15 }}>
-          <Typography variant="h1" sx={{ fontWeight: 900, fontSize: { xs: "6rem", md: "10rem" }, opacity: 0.1, position: "absolute" }}>
+          <Typography variant="h1" sx={{ fontWeight: 900, fontSize: { xs: "4.5rem", md: "10rem" }, opacity: 0.1, position: "absolute" }}>
             404
           </Typography>
           <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 2, zIndex: 1 }}>
@@ -82,7 +82,7 @@ const SongPage: React.FC = () => {
     <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
       <Navbar />
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 12, md: 15 }, pb: 15 }}>
+<Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
 
         {/* HERO HEADER & MAIN COVER */}
         <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ textAlign: "center", mb: 8 }}>
@@ -119,7 +119,7 @@ const SongPage: React.FC = () => {
             </Typography>
           </Box>
           <Box sx={{ flex: 1 }}>
-            <Typography variant="body1" sx={{ whiteSpace: "pre-line", textAlign: "left", lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
+            <Typography variant="body1" sx={{ whiteSpace: "pre-line", textAlign: "left", lineHeight: 1.8, fontSize: { xs: "1rem", md: "1.1rem" }, opacity: 0.9 }}>
               {currentSong.lyrics}
             </Typography>
           </Box>

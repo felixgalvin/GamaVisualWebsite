@@ -78,14 +78,17 @@ const QuoteSlider = ({
 
   useEffect(() => {
     if (autoPlay && images.length > 0) {
+      const autoplayIntervalMs = 5000; // header autoplay changes every 5 seconds
       const interval = setInterval(() => {
         handleNext();
-      }, 5000); 
+      }, autoplayIntervalMs);
       return () => clearInterval(interval);
     }
   }, [autoPlay, handleNext, images.length]);
 
   if (images.length === 0) return null;
+
+  const slideTransitionDuration = autoPlay ? 1.5 : 2; // header fade duration vs manual carousel duration
 
   return (
     <Box sx={{ mb: 12, textAlign: "center" }}>
@@ -98,7 +101,7 @@ const QuoteSlider = ({
       <Box sx={{ 
         position: "relative", 
         width: "100%", 
-        height: height, 
+        height: { xs: "320px", md: height }, 
         borderRadius: "24px",
         overflow: "hidden",
         boxShadow: "0px 15px 50px rgba(0,0,0,0.6)",
@@ -111,7 +114,7 @@ const QuoteSlider = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: slideTransitionDuration }}
             src={images[currentIndex]}
             alt={`${title} ${currentIndex}`}
             sx={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -175,7 +178,7 @@ const QuoteSlider = ({
                   height: 8, 
                   borderRadius: "4px", 
                   bgcolor: i === currentIndex ? "#fff" : "rgba(255,255,255,0.4)",
-                  transition: "all 5s",
+                  transition: "all 3s ease",
                   cursor: "pointer"
                 }} 
               />

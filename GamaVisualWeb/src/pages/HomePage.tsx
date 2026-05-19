@@ -51,15 +51,16 @@ const HomePage: React.FC = () => {
         animate="visible"
         variants={fadeInUp}
         sx={{
-          height: "100vh",
+          minHeight: { xs: "80vh", md: "100vh" },
           backgroundImage: `url('${coverImg}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: { xs: "flex-start", md: "center" },
           alignItems: "center",
           textAlign: "center",
+          pt: { xs: "100px", md: 0 },
         }}
       >
         <Box
@@ -69,7 +70,7 @@ const HomePage: React.FC = () => {
         />
       </Box>
 
-      <Container maxWidth="lg" sx={{ py: 10 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 8, md: 10 } }}>
         
         {/* 2. QUOTE SECTION */}
         <Box 
@@ -78,9 +79,9 @@ const HomePage: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
-          sx={{ textAlign: "center", mb: 15, px: { xs: 2, md: 10 } }}
+          sx={{ textAlign: "center", mb: { xs: 10, md: 15 }, px: { xs: 2, md: 10 } }}
         >
-          <Typography variant="h5" sx={{ fontStyle: "italic", mb: 2 }}>
+          <Typography variant="h5" sx={{ fontStyle: "italic", mb: 2, fontSize: { xs: "1rem", md: "1.2rem" } }}>
             "Apa pun juga yang kamu perbuat, perbuatlah dengan segenap hatimu seperti untuk Tuhan dan bukan untuk manusia."
           </Typography>
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>Kolose 3 : 23</Typography>
@@ -187,7 +188,7 @@ const HomePage: React.FC = () => {
                 sx={{ 
                   fontWeight: 500, 
                   opacity: 0.8,
-                  fontSize: { xs: "3.2rem", md: "3.5rem" },
+                  fontSize: { xs: "2.4rem", md: "3.5rem" },
                   mb: 0.5 
                 }}
               >
