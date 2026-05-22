@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 
-// Import your data store
 import { songCatalog } from "../data/songs";
 
 const fadeInUp = {
@@ -24,7 +23,6 @@ const SongPage: React.FC = () => {
   const navigate = useNavigate();
   const [showButton, setShowButton] = useState(false);
 
-  // Find the matching song in your catalog
   const currentSong = songCatalog.find(song => song.id === songId);
 
   useEffect(() => {
@@ -33,7 +31,7 @@ const SongPage: React.FC = () => {
     const handleScroll = () => {
       setShowButton(window.scrollY > window.innerHeight);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -82,11 +80,10 @@ const SongPage: React.FC = () => {
     <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
       <Navbar />
 
-<Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
+      <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
 
         {/* HERO HEADER & MAIN COVER */}
         <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ textAlign: "center", mb: 8 }}>
-          {/* Replaced hardcoded text with dynamic data */}
           <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
             <Typography variant="h3" sx={{ fontWeight: 800, mb: 1 }}>
               {currentSong.title}
@@ -113,11 +110,41 @@ const SongPage: React.FC = () => {
 
         {/* LYRICS */}
         <Box component={motion.div} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, mb: 10 }}>
-          <Box sx={{ flex: 1, mb: { xs: 4, md: 0 } }}>
-            <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", letterSpacing: 1 }}>
+
+          {/* Left Column Container */}
+          <Box sx={{
+            flex: 1,
+            mb: { xs: 4, md: 0 },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start"
+          }}>
+            <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", letterSpacing: 1, textAlign: "left", mb: 2 }}>
               SONG LYRIC
             </Typography>
+
+            <Typography variant="body1" sx={{ whiteSpace: "pre-line", textAlign: "left", lineHeight: 1.8, fontSize: { xs: "1rem", md: "1.1rem" }, opacity: 0.9, mb: 4 }}>
+              Temukan chord untuk lagu ini dan bawakan{'\n'}dengan caramu!
+            </Typography>
+
+            <Button
+              variant="contained"
+              onClick={() => navigate(`/album/song/chord/${song.id}`)}
+              sx={{
+                width: "230px",
+                borderRadius: "30px",
+                bgcolor: "#E8EAF6",
+                color: "#050A30",
+                py: 1.5,
+                fontWeight: 700,
+                textTransform: "none",
+                "&:hover": { bgcolor: "#fff" }
+              }}>
+              View Chords
+            </Button>
           </Box>
+
+          {/* Right Column Container */}
           <Box sx={{ flex: 1 }}>
             <Typography variant="body1" sx={{ whiteSpace: "pre-line", textAlign: "left", lineHeight: 1.8, fontSize: { xs: "1rem", md: "1.1rem" }, opacity: 0.9 }}>
               {currentSong.lyrics}
@@ -141,21 +168,39 @@ const SongPage: React.FC = () => {
           </Typography>
         </Box>
 
-        {/* ARTIST PROFILE */}
-        <Box component={motion.div} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", gap: { xs: 4, md: 8 } }}>
-          <Box sx={{ width: { xs: "100%", md: "33.333%" } }}>
-            <Box sx={{ width: "100%", aspectRatio: "1/1", borderRadius: "20px", overflow: "hidden", bgcolor: "#E8EAF6", boxShadow: "0px 8px 25px rgba(0,0,0,0.4)" }}>
-              <Box component="img" src={currentSong.images.artist} alt={`${currentSong.artistName} Profile`} sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        {/* ARTIST PROFILES */}
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 8, mb: 10 }}>
+          {currentSong.profiles.map((profile, index) => (
+            <Box
+              key={index}
+              component={motion.div}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", gap: { xs: 5, md: 10 } }}
+            >
+              {/* Profile Image */}
+              <Box sx={{ width: { xs: "100%", md: "33.333%" } }}>
+                <Box sx={{ width: "100%", aspectRatio: "1/1", borderRadius: "20px", overflow: "hidden", bgcolor: "#E8EAF6", boxShadow: "0px 8px 25px rgba(0,0,0,0.4)" }}>
+                  <Box component="img" src={profile.image} alt={`${profile.name} Profile`} sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                </Box>
+              </Box>
+
+              {/* Profile Info */}
+              <Box sx={{ width: { xs: "100%", md: "66.666%" }, textAlign: "left" }}>
+                <Typography variant="h3" sx={{ fontWeight: 800, mb: 1, color: "#ffffff" }}>
+                  {profile.name}
+                </Typography>
+                <Typography variant="h5" sx={{ fontWeight: 600, mb: 3, color: "#ffffff", opacity: 0.9 }}>
+                  {profile.job}
+                </Typography>
+                <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
+                  {profile.bio}
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-          <Box sx={{ width: { xs: "100%", md: "66.666%" } }}>
-            <Typography variant="h2" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 3, color: "#ffffff" }}>
-              {currentSong.artistName}
-            </Typography>
-            <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
-              {currentSong.artistBio}
-            </Typography>
-          </Box>
+          ))}
         </Box>
 
       </Container>
