@@ -66,7 +66,7 @@ const ContactUsPage: React.FC = () => {
                 fontWeight: 800,
                 letterSpacing: 1,
                 mb: 3,
-                fontSize: { xs: "2.4rem", md: "4rem" },
+                fontSize: { xs: "2.4rem", md: "4.1rem" },
                 lineHeight: 1.05,
                 color: "#ffffff"
               }}
@@ -79,13 +79,13 @@ const ContactUsPage: React.FC = () => {
             <Typography
               variant="h6"
               sx={{
-                maxWidth: { xs: "100%", md: "720px" },
+                maxWidth: { xs: "100%", md: "950px" },
                 mx: "auto",
                 mb: 2,
                 fontWeight: 400,
                 lineHeight: 1.8,
                 opacity: 0.9,
-                fontSize: { xs: "1rem", md: "1.1rem" }
+                fontSize: { xs: "1rem", md: "1.8rem" }
               }}
             >
               Di balik setiap karya yang bermakna, selalu ada dukungan yang membuat perjalanan itu terus berjalan.
@@ -93,12 +93,13 @@ const ContactUsPage: React.FC = () => {
             <Typography
               variant="body1"
               sx={{
-                maxWidth: "640px",
+                maxWidth: "740px",
                 mx: "auto",
                 mb: 6,
                 fontWeight: 300,
                 lineHeight: 1.9,
                 opacity: 0.85,
+                fontSize: { xs: "0.9rem", md: "1.4rem" }
               }}
             >
               Mari dukung perjalanan ini melalui donasi yang membantu lebih banyak talenta mendapatkan kesempatan untuk belajar, berkembang, dan menjadi berkat bagi sesama.
@@ -107,6 +108,7 @@ const ContactUsPage: React.FC = () => {
 
           <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.4 }}>
             <Button
+              href="https://www.instagram.com/gama.visual.ofc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
               variant="contained"
               sx={{
                 px: 5,

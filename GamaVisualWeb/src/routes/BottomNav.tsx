@@ -58,10 +58,10 @@ const Footer: React.FC = () => {
               spacing={1} 
               sx={{ alignItems: { xs: "center", md: "flex-start" } }}
             >
-              <Link href="mailto:email@example.com" color="inherit" underline="none" sx={{ opacity: 0.9, fontSize: '0.85rem' }}>
+              <Link color="inherit" underline="none" sx={{ opacity: 0.9, fontSize: '0.85rem' }}>
                 gama.visual.id@gmail.com
               </Link>
-              <Link href="#" color="inherit" underline="none" sx={{ opacity: 0.9, fontSize: '0.85rem' }}>
+              <Link color="inherit" underline="none" sx={{ opacity: 0.9, fontSize: '0.85rem' }}>
                 Bandung
               </Link>
             </Stack>
