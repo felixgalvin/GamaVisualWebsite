@@ -7,7 +7,6 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
-import coverImg from "../assets/CoverBlur.png";
 import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
 import faith from "../assets/ResilienceFaith2.png";
 
@@ -43,22 +42,6 @@ const songs = [
     verse: "Mazmur 37:23-24 (TB)",
     desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
     img: faith,
-    artist: "Tasya"
-  },
-  {
-    id: "kasih-mu-tak-berubah-2",
-    title: "KASIH-MU TAK BERUBAH",
-    verse: "Mazmur 37:23-24 (TB)",
-    desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
-    img: coverImg,
-    artist: "Tasya"
-  },
-  {
-    id: "satu-dalam-doa-2",
-    title: "SATU DALAM DOA",
-    verse: "Mazmur 37:23-24 (TB)",
-    desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
-    img: thumbnail,
     artist: "Tasya"
   }
 ];
@@ -158,6 +141,15 @@ const AlbumPage: React.FC = () => {
         scrollToSong(songIndex);
       }
     }
+  };
+
+  const getSelectedSongLabel = (value: string) => {
+    if (!value) {
+      return "Search for Song Title";
+    }
+
+    const selectedSong = songs.find((song) => song.id === value);
+    return selectedSong ? selectedSong.title : "Search for Song Title";
   };
 
   return (
@@ -325,13 +317,13 @@ const AlbumPage: React.FC = () => {
                 value={searchTitle}
                 displayEmpty
                 onChange={handleSearchChange}
+                renderValue={(selected) => getSelectedSongLabel(selected as string)}
                 sx={{ 
                     color: "#050A30", 
                     fontWeight: 600, 
                     "& .MuiOutlinedInput-notchedOutline": { border: "none" } 
                 }}
                 >
-                <MenuItem value="">Search for Song Title</MenuItem>
                 {songs.map((song) => (
                     <MenuItem key={song.id} value={song.id}>{song.title}</MenuItem>
                 ))}

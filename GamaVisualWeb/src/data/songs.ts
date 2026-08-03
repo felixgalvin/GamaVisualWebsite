@@ -1,5 +1,6 @@
-import artistImg from "../assets/Tasya.jpeg";
-import otnielImg from "../assets/KoOT.jpeg"; 
+import tasyaImg from "../assets/Tasya.jpeg";
+import otnielImg from "../assets/KoOT.jpeg";
+import felixImg from "../assets/Felix.jpeg";  
 import bts1 from "../assets/SiaranRadioMei.jpeg";
 import bts2 from "../assets/SiaranRadioMei.jpeg";
 import KasihMuTakBerubah from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
@@ -20,6 +21,7 @@ export interface Song {
   lyrics: string;
   description: string;
   profiles: Profile[]; 
+  albumPhotos?: string[];
   images: {
     cover: string;
     bts1: string;
@@ -41,13 +43,13 @@ export const songCatalog: Song[] = [
       {
         name: "Tasya",
         job: "Singer",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.",
-        image: artistImg
+        bio: 'Lagu "Kasih-Mu Tak Berubah" adalah curahan suara iman yang percaya bahwa kasih Tuhan selalu ada dan nyata dalam hidup kita, walaupun saat keadaan kita sulit bahkan tidak tau harus berbuat apa, tetapi kasih Tuhan selalu beserta dengan kita.',
+        image: tasyaImg
       },
       {
         name: "Otniel",
         job: "Producer",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.",
+        bio: 'Hidup memang tidak selalu mudah. Ada banyak cobaan, air mata, dan pergumulan yang harus dilewati. Tetapi sebagai orang percaya, kita yakin bahwa Tuhan tidak pernah meninggalkan anak-anak-Nya. Saat kita lemah, Tuhan menguatkan. Saat kita hampir jatuh, Tuhan menopang. Kasih-Nya tidak berubah oleh keadaan dan tetap setia sampai selama-lamanya. Tetaplah percaya, karena setiap badai pasti berlalu, dan Tuhan selalu punya rencana yang indah pada waktunya.',
         image: otnielImg 
       }
     ],
@@ -57,5 +59,73 @@ export const songCatalog: Song[] = [
       bts1: bts1,
       bts2: bts2,
     }
+  }, 
+  {
+    id: "satu-dalam-doa",
+    title: "Satu Dalam Doa",
+    releaseInfo: "17 Agustus 2026 - Tasya & Felix",
+    bibleVerseText: 'Karya ini lahir sebagai ungkapan syukur sekaligus pengingat bahwa di tengah keberagaman suku, ras, budaya, dan latar belakang, kita tetap dipersatukan oleh kasih Tuhan. Melalui lagu "Satu dalam Doa", kami ingin mengajak setiap pendengar untuk terus menjunjung tinggi persaudaraan, saling mengasihi tanpa memandang perbedaan, serta percaya bahwa keberagaman adalah anugerah yang menjadi kekuatan bagi bangsa Indonesia. Bertepatan dengan peringatan Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-81 pada 17 Agustus 2026, kiranya lagu ini dapat menjadi pengingat untuk kembali membangun persatuan, menghadirkan damai melalui doa, dan memohon agar Tuhan terus melawat serta memberkati Indonesia. Seperti yang tertulis dalam Kolose 3:14 (TB) \n"Dan di atas semuanya itu: kenakanlah kasih, sebagai pengikat yang mempersatukan dan menyempurnakan." \nSelamat mendengarkan, Tuhan Yesus memberkati.',
+    bibleVerseRef: "Kolose 3:14",
+    lyrics: "(Verse 1)\nDi bawah langit yang sama kita berpijak\nDari ufuk timur hingga ke barat\nKulit kita berbeda, tutur kata tak serupa\nNamun satu detak jantung untuk Indonesia\n\n(Pre-Chorus)\n(Sunda): \nHiji rasa, dina haté anu suci \n*Satu rasa, di dalam hati yang suci*\n(Batak): \nSada ma hita, rap marlas ni roha\n*Satu lah kita, bersama bersukacita*\n(Jawa): \nMbangun paseduluran ingkang nyawiji\n*Membangun persaudaraan yang menyatu*\n\n(Chorus)\nWalau berbeda suku dan budaya\nKita adalah satu, Bhinneka Tunggal Ika\nTuhan, jamah tanah air kami\nJadikan Indonesia luar biasa\nDi dalam tangan-Mu, kami bersatu\n\n(Verse 2)\n(NTT/Kupang): \nKatong pung kawan, katong pung sodara\n*Teman kita, saudara kita*\n(Pontianak): \nBudak melayu, dayak, Tionghoa (Tyonghwa), semue bise kumpul mace\nTak ada sekat yang mampu memisahkan\nSatu darah, satu bangsa, satu tujuan\n*Anak Melayu, Dayak, Tionghoa, semua bisa berkumpul jadi satu*\n\nBack to (Chorus) \n\n(Bridge)\nCurahkan berkat-Mu Tuhan\nAtas pulau-pulau kami\nBiar kemuliaan-Mu nyata di negeri ini\nIndonesia... Jaya!\n\n(Outro)\nTuhan memberkati \nTuhan memberkati\nTuhan memberkati\nNusantara (3x)",
+    description: '',
+    
+    profiles: [
+      {
+        name: "Tasya",
+        job: "Singer",
+        bio: 'Lagu Satu Dalam Doa mengingatkan bahwa kita adalah makhluk sosial yang dimana kita membutuhkan orang lain dalam hidup kita meskipun mereka berbeda suku, ras, dan agamanya. Bukan hanya makhluk sosial tetapi kita juga harus mengasihi satu dengan yang lain tanpa pandang bulu, sama seperti Tuhan yang sudah terlebih dahulu mengasihi kita tanpa memandang siapa diri kita. Karena itu marilah kita menjunjung tinggi tali persaudaraan yang erat agar kita tetap bersatu meskipun kita memiliki latar belakang yang berbeda-beda.',
+        image: tasyaImg
+      },
+      {
+        name: "Felix",
+        job: "Singer",
+        bio: 'Lagu Satu Dalam Doa menjadi lagu yang kembali mengingatkan saya akan persatuan dan harapan dari Bhineka Tunggal Ika. Perbedaan merupakan kekuatan kita Indonesia, bukan kelemahan. Perjuangan yang telah diupayakan pada masa lalu jangan kita sia-siakan, marilah kita perjuangkan. Semangat Indonesia! Tuhan Yesus beserta dengan kita!',
+        image: felixImg
+      },
+      {
+        name: "Otniel",
+        job: "Producer",
+        bio: 'Hidup memang tidak selalu mudah. Ada banyak cobaan, air mata, dan pergumulan yang harus dilewati. Tetapi sebagai orang percaya, kita yakin bahwa Tuhan tidak pernah meninggalkan anak-anak-Nya. Saat kita lemah, Tuhan menguatkan. Saat kita hampir jatuh, Tuhan menopang. Kasih-Nya tidak berubah oleh keadaan dan tetap setia sampai selama-lamanya. Tetaplah percaya, karena setiap badai pasti berlalu, dan Tuhan selalu punya rencana yang indah pada waktunya.',
+        image: otnielImg 
+      }
+    ],
+    albumPhotos: [bts1, bts2],
+    
+    images: {
+      cover: KasihMuTakBerubah,
+      bts1: bts1,
+      bts2: bts2,
+    }
   },
+  // Template
+  // {
+  //   id: "satu-dalam-doa",
+  //   title: "",
+  //   releaseInfo: "",
+  //   bibleVerseText: '',
+  //   bibleVerseRef: "",
+  //   lyrics: '',
+  //   description: '',
+    
+  //   profiles: [
+  //     {
+  //       name: "",
+  //       job: "",
+  //       bio: '',
+  //       image: 
+  //     },
+  //     {
+  //       name: "Otniel",
+  //       job: "Producer",
+  //       bio: 'Hidup memang tidak selalu mudah. Ada banyak cobaan, air mata, dan pergumulan yang harus dilewati. Tetapi sebagai orang percaya, kita yakin bahwa Tuhan tidak pernah meninggalkan anak-anak-Nya. Saat kita lemah, Tuhan menguatkan. Saat kita hampir jatuh, Tuhan menopang. Kasih-Nya tidak berubah oleh keadaan dan tetap setia sampai selama-lamanya. Tetaplah percaya, karena setiap badai pasti berlalu, dan Tuhan selalu punya rencana yang indah pada waktunya.',
+  //       image: otnielImg 
+  //     }
+  //   ],
+    
+  //   images: {
+  //     cover: KasihMuTakBerubah,
+  //     bts1: bts1,
+  //     bts2: bts2,
+  //   }
+  // },
 ];
