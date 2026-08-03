@@ -5,8 +5,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
-import coverImg from "../assets/CoverBlur.png"; 
-import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg"; 
+import coverImg from "../assets/CoverBlur.png";
+import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
 import siaran from "../assets/SiaranRadioMei.jpeg";
 
 const MotionBox = motion(Box);
@@ -53,29 +53,29 @@ const HomePage: React.FC = () => {
         animate="visible"
         variants={fadeInUp}
         sx={{
-          minHeight: { xs: "80vh", md: "100vh" },
+          minHeight: { xs: "calc(100svh - 70px)", md: "100vh" },
           backgroundImage: `url('${coverImg}')`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center center",
           display: "flex",
           flexDirection: "column",
           justifyContent: { xs: "flex-start", md: "center" },
           alignItems: "center",
           textAlign: "center",
-          pt: { xs: "100px", md: 0 },
+          pt: { xs: "70px", md: 0 },
         }}
       >
         <Box
           component="img"
-          src="LogoGama.PNG" 
+          src="LogoGama.PNG"
           sx={{ width: { xs: "80%", md: "50%" }, maxWidth: "600px", mb: 2, marginTop: { xs: "110px", md: "80px" } }}
         />
       </Box>
 
       <Container maxWidth="lg" sx={{ py: { xs: 8, md: 10 } }}>
-        
+
         {/* 2. QUOTE SECTION */}
-        <Box 
+        <Box
           component={MotionBox}
           initial="hidden"
           whileInView="visible"
@@ -121,9 +121,9 @@ const HomePage: React.FC = () => {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ 
+                sx={{
                   width: "100%",
-                  maxWidth: "510px", 
+                  maxWidth: "510px",
                   borderRadius: "20px",
                   overflow: "hidden",
                   lineHeight: 0,
@@ -132,9 +132,10 @@ const HomePage: React.FC = () => {
                   cursor: "pointer",
                   textDecoration: "none",
                   backgroundColor: "transparent",
-                  "&:hover": { 
-                    transform: "scale(1.05)" 
+                  "&:hover": {
+                    transform: "scale(1.05)"
                   },
+
                 }}
               >
                 <Box
@@ -162,38 +163,38 @@ const HomePage: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          sx={{ 
-            mb: 15, 
+          sx={{
+            mb: 15,
             width: "100%",
-            px: { xs: 2, md: 0 } 
+            px: { xs: 2, md: 0 }
           }}
         >
-          <Box 
-            sx={{ 
-              display: "flex", 
-              flexDirection: { xs: "column", md: "row" }, 
-              gap: { xs: 4, md: 8 }, 
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              gap: { xs: 4, md: 8 },
               alignItems: "flex-start",
               width: "100%"
             }}
           >
             {/* KOLOM KIRI: JUDUL (Strict 40%-50% Width) */}
             <Box sx={{ width: { xs: "100%", md: "45%" }, flexShrink: 0, textAlign: "left" }}>
-              <Typography 
-                variant="h5" 
-                sx={{ 
-                  fontWeight: 500, 
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 500,
                   opacity: 0.8,
                   fontSize: { xs: "2.4rem", md: "3.5rem" },
-                  mb: 0.5 
+                  mb: 0.5
                 }}
               >
                 What is
               </Typography>
-              <Typography 
-                variant="h2" 
-                sx={{ 
-                  fontWeight: 800, 
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 800,
                   lineHeight: 1.1,
                   textTransform: "uppercase",
                   fontSize: { xs: "4.5rem", md: "5.5rem" },
@@ -210,24 +211,24 @@ const HomePage: React.FC = () => {
               <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
                 Gama Visual adalah komunitas kreatif yang berjalan dengan berkolaborasi serta mewadahi generasi muda yang memiliki talenta melalui karya musik yang membawa pesan kasih dan pengharapan.
               </Typography>
-              
+
               <Typography variant="body1" sx={{ mb: 5, lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
                 “Gama” berarti perjalanan—sebuah proses yang penuh makna, yang membentuk kami untuk terus berkarya dan menjadi berkat bagi sesama.
               </Typography>
 
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 onClick={() => navigate('/about')}
-                sx={{ 
-                  borderRadius: "30px", 
-                  bgcolor: "#E8EAF6", 
-                  color: "#050A30", 
-                  px: 6, 
-                  py: 1.5, 
+                sx={{
+                  borderRadius: "30px",
+                  bgcolor: "#E8EAF6",
+                  color: "#050A30",
+                  px: 6,
+                  py: 1.5,
                   fontWeight: 700,
                   textTransform: "none",
-                  fontSize: "1rem", 
-                  "&:hover": { bgcolor: "#fff" } 
+                  fontSize: "1rem",
+                  "&:hover": { bgcolor: "#fff" }
                 }}
               >
                 Learn More
@@ -238,8 +239,8 @@ const HomePage: React.FC = () => {
 
         {/* 5. BEHIND THE SCENE SECTION */}
         <Box sx={{ textAlign: "center", mb: 10, width: "100%" }}>
-          <Typography 
-            variant="h4" 
+          <Typography
+            variant="h4"
             sx={{ fontWeight: 700, mb: 6, letterSpacing: 1 }}
           >
             Behind The Scene
@@ -254,7 +255,7 @@ const HomePage: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2, duration: 0.5 }}
-                  sx={{ 
+                  sx={{
                     width: "100%",
                     borderRadius: "16px",
                     overflow: "hidden",
@@ -286,7 +287,7 @@ const HomePage: React.FC = () => {
         </Box>
 
       </Container>
-      
+
       <Footer />
 
       {/* BUTTON SCROLL TO TOP */}
