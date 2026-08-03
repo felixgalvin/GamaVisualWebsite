@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Box, Typography, Container, Button, Fab, Zoom } from "@mui/material";
+import { Box, Typography, Container, Button, Fab, Zoom, IconButton } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
@@ -24,6 +26,8 @@ const SongPage: React.FC = () => {
   const { songId } = useParams<{ songId: string }>();
   const navigate = useNavigate();
   const [showButton, setShowButton] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const currentSong = songCatalog.find(song => song.id === songId);
 
@@ -39,6 +43,90 @@ const SongPage: React.FC = () => {
   }, []);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const scrollCarousel = (direction: "left" | "right") => {
+    const container = carouselRef.current;
+    if (!container) return;
+
+    const scrollAmount = container.clientWidth;
+    const isAtLeftMost = container.scrollLeft <= 0;
+    const isAtRightMost = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
+
+    if (direction === "left") {
+      container.scrollLeft = isAtLeftMost ? container.scrollWidth : container.scrollLeft - scrollAmount;
+    } else {
+      container.scrollLeft = isAtRightMost ? 0 : container.scrollLeft + scrollAmount;
+    }
+  };
+
+  const handleCarouselScroll = () => {
+    if (carouselRef.current) {
+      const scrollPosition = carouselRef.current.scrollLeft;
+      const slideWidth = carouselRef.current.clientWidth;
+      const newIndex = Math.round(scrollPosition / slideWidth);
+      if (newIndex !== currentSlide) {
+        setCurrentSlide(newIndex);
+      }
+    }
+  };
+
+  const goToSlide = (index: number) => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollTo({
+        left: index * carouselRef.current.clientWidth,
+        behavior: "smooth"
+      });
+      setCurrentSlide(index);
+    }
+  };
+
+  const renderLyrics = (lyrics: string) => {
+    return lyrics.split("\n").map((line, index) => {
+      if (!line.trim()) {
+        return <Box key={`lyrics-empty-${index}`} sx={{ height: 8 }} />;
+      }
+
+      const parts = line.split(/(\*[^*]+\*)/g).filter(Boolean);
+
+      return (
+        <Box key={`lyrics-line-${index}`} sx={{ mb: 0.75, lineHeight: 1.8 }}>
+          {parts.map((part, partIndex) => {
+            const isHighlighted = part.startsWith("*") && part.endsWith("*");
+            const text = isHighlighted ? part.slice(1, -1) : part;
+
+            return isHighlighted ? (
+              <Box component="span" key={`${index}-${partIndex}`} sx={{ fontWeight: 800, color: "#E8EAF6" }}>
+                {text}
+              </Box>
+            ) : (
+              <Box component="span" key={`${index}-${partIndex}`}>
+                {text}
+              </Box>
+            );
+          })}
+        </Box>
+      );
+    });
+  };
+
+  useEffect(() => {
+    if (!currentSong?.albumPhotos?.length) return;
+
+    const interval = window.setInterval(() => {
+      setCurrentSlide((prev) => {
+        const nextIndex = prev + 1 >= currentSong.albumPhotos!.length ? 0 : prev + 1;
+        if (carouselRef.current) {
+          carouselRef.current.scrollTo({
+            left: nextIndex * carouselRef.current.clientWidth,
+            behavior: "smooth"
+          });
+        }
+        return nextIndex;
+      });
+    }, 4000);
+
+    return () => window.clearInterval(interval);
+  }, [currentSong?.albumPhotos?.length]);
 
   // If someone types a bad URL, redirect them back to the Album page
   if (!currentSong) {
@@ -102,7 +190,7 @@ const SongPage: React.FC = () => {
 
         {/* BIBLE QUOTE */}
         <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ textAlign: "center", mb: 10, px: { xs: 2, md: 10 } }}>
-          <Typography variant="h6" sx={{ fontStyle: "italic", mb: 2, fontWeight: 400, opacity: 0.9 }}>
+          <Typography variant="h6" sx={{ fontStyle: "italic", mb: 2, fontWeight: 400, opacity: 0.9, whiteSpace: "pre-line" }}>
             {currentSong.bibleVerseText}
           </Typography>
           <Typography variant="subtitle1" sx={{ fontWeight: 800 }}>
@@ -125,7 +213,7 @@ const SongPage: React.FC = () => {
               SONG LYRIC
             </Typography>
 
-            <Typography variant="body1" sx={{ whiteSpace: "pre-line", textAlign: "left", lineHeight: 1.8, fontSize: { xs: "1rem", md: "1.1rem" }, opacity: 0.9, mb: 4 }}>
+            {/* <Typography variant="body1" sx={{ whiteSpace: "pre-line", textAlign: "left", lineHeight: 1.8, fontSize: { xs: "1rem", md: "1.1rem" }, opacity: 0.9, mb: 4 }}>
               Temukan chord untuk lagu ini dan bawakan{'\n'}dengan caramu!
             </Typography>
 
@@ -143,14 +231,14 @@ const SongPage: React.FC = () => {
                 "&:hover": { bgcolor: "#fff" }
               }}>
               View Chords
-            </Button>
+            </Button> */}
           </Box>
 
           {/* Right Column Container */}
           <Box sx={{ flex: 1 }}>
-            <Typography variant="body1" sx={{ whiteSpace: "pre-line", textAlign: "left", lineHeight: 1.8, fontSize: { xs: "1rem", md: "1.1rem" }, opacity: 0.9 }}>
-              {currentSong.lyrics}
-            </Typography>
+            <Box sx={{ textAlign: "left", lineHeight: 1.8, fontSize: { xs: "1rem", md: "1.1rem" }, opacity: 0.9 }}>
+              {renderLyrics(currentSong.lyrics)}
+            </Box>
           </Box>
         </Box>
 
@@ -165,7 +253,7 @@ const SongPage: React.FC = () => {
 
         {/* SONG DESCRIPTION */}
         <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ mb: 12 }}>
-          <Typography variant="body1" sx={{ textAlign: "justify", lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
+          <Typography variant="body1" sx={{ textAlign: "justify", lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9, whiteSpace: "pre-line" }}>
             {currentSong.description}
           </Typography>
         </Box>
@@ -204,6 +292,100 @@ const SongPage: React.FC = () => {
             </Box>
           ))}
         </Box>
+
+        {currentSong.albumPhotos && currentSong.albumPhotos.length > 0 && (
+          <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ mb: 10 }}>
+            <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 3 }}>
+              PROJECT MEMBER'S
+            </Typography>
+
+            <Box sx={{ position: "relative", width: { xs: "100%", md: "70%" }, mx: "auto" }}>
+              <IconButton
+                onClick={() => scrollCarousel("left")}
+                sx={{
+                  position: "absolute",
+                  left: { xs: 12, md: 20 },
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  bgcolor: "rgba(255,255,255,0.9)",
+                  color: "#000",
+                  zIndex: 2,
+                  boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
+                  "&:hover": { bgcolor: "#fff" }
+                }}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
+
+              <IconButton
+                onClick={() => scrollCarousel("right")}
+                sx={{
+                  position: "absolute",
+                  right: { xs: 12, md: 20 },
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  bgcolor: "rgba(255,255,255,0.9)",
+                  color: "#000",
+                  zIndex: 2,
+                  boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
+                  "&:hover": { bgcolor: "#fff" }
+                }}
+              >
+                <ChevronRightIcon />
+              </IconButton>
+
+              <Box
+                ref={carouselRef}
+                onScroll={handleCarouselScroll}
+                sx={{
+                  display: "flex",
+                  overflowX: "hidden",
+                  scrollSnapType: "x mandatory",
+                  scrollBehavior: "smooth",
+                  borderRadius: "24px",
+                  boxShadow: "0px 10px 30px rgba(0,0,0,0.35)"
+                }}
+              >
+                {currentSong.albumPhotos.map((photo, index) => (
+                  <Box
+                    key={`${currentSong.id}-photo-${index}`}
+                    sx={{
+                      minWidth: "100%",
+                      scrollSnapAlign: "center",
+                      aspectRatio: "16/9",
+                      overflow: "hidden",
+                      display: "flex",
+                      alignItems: "stretch"
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={photo}
+                      alt={`Album photo ${index + 1}`}
+                      sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    />
+                  </Box>
+                ))}
+              </Box>
+
+              <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mt: 2 }}>
+                {currentSong.albumPhotos.map((_, index) => (
+                  <Box
+                    key={`dot-${index}`}
+                    onClick={() => goToSlide(index)}
+                    sx={{
+                      width: 10,
+                      height: 10,
+                      borderRadius: "50%",
+                      bgcolor: index === currentSlide ? "#fff" : "rgba(255,255,255,0.4)",
+                      cursor: "pointer"
+                    }}
+                  />
+                ))}
+              </Box>
+            </Box>
+          </Box>
+        )}
 
       </Container>
 
