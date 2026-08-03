@@ -135,7 +135,6 @@ const HomePage: React.FC = () => {
                   "&:hover": { 
                     transform: "scale(1.05)" 
                   },
-                  marginRight: index === 0 ? 9 : 0
                 }}
               >
                 <Box
