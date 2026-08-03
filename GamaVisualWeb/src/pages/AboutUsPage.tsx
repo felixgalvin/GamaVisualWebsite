@@ -13,7 +13,7 @@ import heroImg4 from "../assets/behind.jpg";
 import heroImg5 from "../assets/SiaranRadioMei.jpeg";
 import activity1 from "../assets/SiaranRadioMei.jpeg";
 import activity2 from "../assets/behind.jpg";
-import activity3 from "../assets/aboutus2.jpg";
+// import activity3 from "../assets/";
 
 const MotionBox = motion(Box);
 
