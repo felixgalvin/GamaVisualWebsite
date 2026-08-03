@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Box, Typography, Container, Button, Fab, Zoom } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 
 import { songCatalog } from "../data/songs";
 
-const fadeInUp = {
+const MotionBox = motion(Box);
+
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
 };
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1.5 } }
 };
@@ -83,8 +85,8 @@ const SongPage: React.FC = () => {
       <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
 
         {/* HERO HEADER & MAIN COVER */}
-        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ textAlign: "center", mb: 8 }}>
-          <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
+        <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeIn} sx={{ textAlign: "center", mb: 8 }}>
+          <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeInUp}>
             <Typography variant="h3" sx={{ fontWeight: 800, mb: 1 }}>
               {currentSong.title}
             </Typography>
@@ -99,7 +101,7 @@ const SongPage: React.FC = () => {
         </Box>
 
         {/* BIBLE QUOTE */}
-        <Box component={motion.div} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ textAlign: "center", mb: 10, px: { xs: 2, md: 10 } }}>
+        <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ textAlign: "center", mb: 10, px: { xs: 2, md: 10 } }}>
           <Typography variant="h6" sx={{ fontStyle: "italic", mb: 2, fontWeight: 400, opacity: 0.9 }}>
             {currentSong.bibleVerseText}
           </Typography>
@@ -109,7 +111,7 @@ const SongPage: React.FC = () => {
         </Box>
 
         {/* LYRICS */}
-        <Box component={motion.div} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, mb: 10 }}>
+        <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, mb: 10 }}>
 
           {/* Left Column Container */}
           <Box sx={{
@@ -129,7 +131,7 @@ const SongPage: React.FC = () => {
 
             <Button
               variant="contained"
-              onClick={() => navigate(`/album/song/chord/${song.id}`)}
+              onClick={() => navigate(`/album/song/chord/${currentSong.id}`)}
               sx={{
                 width: "230px",
                 borderRadius: "30px",
@@ -153,7 +155,7 @@ const SongPage: React.FC = () => {
         </Box>
 
         {/* BEHIND THE SCENE IMAGES */}
-        <Box component={motion.div} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, mb: 6 }}>
+        <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, mb: 6 }}>
           {[currentSong.images.bts1, currentSong.images.bts2].map((imgSrc, index) => (
             <Box key={index} sx={{ flex: 1, borderRadius: "20px", overflow: "hidden", bgcolor: "#E8EAF6", boxShadow: "0px 8px 25px rgba(0,0,0,0.3)", lineHeight: 0 }}>
               <Box component="img" src={imgSrc} alt={`Behind the scene ${index + 1}`} sx={{ width: "100%", height: "auto", display: "block" }} />
@@ -162,7 +164,7 @@ const SongPage: React.FC = () => {
         </Box>
 
         {/* SONG DESCRIPTION */}
-        <Box component={motion.div} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ mb: 12 }}>
+        <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ mb: 12 }}>
           <Typography variant="body1" sx={{ textAlign: "justify", lineHeight: 1.8, fontSize: "1.1rem", opacity: 0.9 }}>
             {currentSong.description}
           </Typography>
@@ -173,7 +175,7 @@ const SongPage: React.FC = () => {
           {currentSong.profiles.map((profile, index) => (
             <Box
               key={index}
-              component={motion.div}
+              component={MotionBox}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}

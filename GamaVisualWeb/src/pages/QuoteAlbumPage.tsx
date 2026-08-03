@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Box, Typography, Container, Grid, Button, Fab, Zoom, IconButton } from "@mui/material";
+import { Box, Typography, Container, Button, Fab, Zoom, IconButton } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -105,16 +105,15 @@ const QuoteSlider = ({
         backgroundColor: "#101426"
       }}>
         <AnimatePresence mode="wait">
-          <Box
+          <motion.img
             key={currentIndex}
-            component={motion.img}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: slideTransitionDuration }}
             src={images[currentIndex]}
             alt={`${title} ${currentIndex}`}
-            sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </AnimatePresence>
 
@@ -199,9 +198,9 @@ const QuotePage: React.FC = () => {
         />
 
         {/* Section 2: Navigasi Button */}
-        <Grid container spacing={2} justifyContent="center" sx={{ mb: 15 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 2, mb: 15 }}>
           {categories.map((cat) => (
-            <Grid item key={cat.id}>
+            <Box key={cat.id}>
               <Button
                 variant="contained"
                 onClick={() => scrollToSection(cat.id)}
@@ -217,23 +216,27 @@ const QuotePage: React.FC = () => {
               >
                 {cat.label}
               </Button>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
 
         {/* Section Kategori (Dengan Dots, Manual Slider) */}
         {categories.map((cat) => (
-          <Box 
-            key={cat.id} 
-            ref={(el) => (sectionRefs.current[cat.id] = el)}
-            sx={{
-              pt: cat.id === "inner-peace" ? 0 : 10, 
-              mt: cat.id === "inner-peace" ? "-40px" : 0,
+          <motion.div
+            key={cat.id}
+            ref={(el) => {
+              sectionRefs.current[cat.id] = el;
+            }}
+            style={{
+              paddingTop: cat.id === "inner-peace" ? 0 : 40,
+              marginTop: cat.id === "inner-peace" ? "-40px" : 0,
               scrollMarginTop: cat.id === "inner-peace" ? "100px" : "0px"
             }}
           >
-            <QuoteSlider sectionId={cat.id} title={cat.label} />
-          </Box>
+            <Box sx={{ pt: cat.id === "inner-peace" ? 0 : 10 }}>
+              <QuoteSlider sectionId={cat.id} title={cat.label} />
+            </Box>
+          </motion.div>
         ))}
       </Container>
 

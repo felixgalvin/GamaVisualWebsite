@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Container, Grid, Link, Divider, Stack } from "@mui/material";
+import { Box, Typography, Container, Link, Divider, Stack } from "@mui/material";
 import { FaInstagram, FaTiktok, FaYoutube, FaSpotify } from "react-icons/fa";
 
 const Footer: React.FC = () => {
@@ -16,10 +16,10 @@ const Footer: React.FC = () => {
     >
       <Container maxWidth="lg">
         {/* Gunakan justifyContent="space-between" agar tiap kolom punya jarak maksimal */}
-        <Grid container spacing={{ xs: 3, md: 4 }} sx={{ justifyContent: "space-between", alignItems: "flex-start" }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: { xs: 3, md: 4 }, justifyContent: "space-between", alignItems: "flex-start" }}>
           
           {/* Kolom 1: Logo (Diberi ruang md: 4) */}
-          <Grid item xs={12} md={4}>
+          <Box sx={{ width: { xs: "100%", md: "33%" } }}>
             <Box 
               sx={{ 
                 display: "flex",
@@ -38,10 +38,10 @@ const Footer: React.FC = () => {
                 }}
               />
             </Box>
-          </Grid>
+          </Box>
 
           {/* Kolom 2: Contact Us (md: 3 agar ada jarak lega dari logo) */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Box sx={{ width: { xs: "100%", sm: "calc(50% - 12px)", md: "25%" } }}>
             <Typography 
               variant="subtitle2" 
               sx={{ 
@@ -65,10 +65,10 @@ const Footer: React.FC = () => {
                 Bandung
               </Link>
             </Stack>
-          </Grid>
+          </Box>
 
           {/* Kolom 3: Follow Us On (md: 3) */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Box sx={{ width: { xs: "100%", sm: "calc(50% - 12px)", md: "25%" } }}>
             <Typography 
               variant="subtitle2" 
               sx={{ 
@@ -82,10 +82,9 @@ const Footer: React.FC = () => {
               FOLLOW US ON
             </Typography>
             <Stack 
-              direction="row" 
-              flexWrap="wrap"
+              direction="row"
               spacing={{ xs: 1.5, md: 2 }} 
-              sx={{ justifyContent: { xs: "center", md: "flex-start" } }}
+              sx={{ justifyContent: { xs: "center", md: "flex-start" }, flexWrap: "wrap" }}
             >
               {[
                 { icon: <FaInstagram />, url: "https://www.instagram.com/gama.visual.ofc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
@@ -108,16 +107,14 @@ const Footer: React.FC = () => {
                 </Link>
               ))}
             </Stack>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
 
         <Divider sx={{ mt: 8, mb: 4, borderColor: "rgba(255, 255, 255, 0.4)", borderBottomWidth: 2.5 }} />
 
         <Typography
           variant="caption"
-          display="block"
-          align="center"
-          sx={{ opacity: 0.8, fontSize: "0.75rem", letterSpacing: 0.5 }}
+          sx={{ opacity: 0.8, fontSize: "0.75rem", letterSpacing: 0.5, display: "block", textAlign: "center" }}
         >
           © 2026 Gama Visual. All rights reserved
         </Typography>

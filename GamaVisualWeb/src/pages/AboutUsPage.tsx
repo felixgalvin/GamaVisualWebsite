@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Container, Fab, Zoom } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 
@@ -12,12 +12,14 @@ import activity1 from "../assets/SiaranRadioMei.jpeg";
 import activity2 from "../assets/CoverBlur.png";
 import activity3 from "../assets/CoverBlur.png";
 
-const fadeInUp = {
+const MotionBox = motion(Box);
+
+const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
 };
 
-const fadeIn = {
+const fadeIn: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 1.5 } }
 };
@@ -61,7 +63,7 @@ const AboutUsPage: React.FC = () => {
 
                 {/* 1. FADING HERO SECTION */}
                 <Box
-                    component={motion.div}
+                    component={MotionBox}
                     initial="hidden"
                     animate="visible" 
                     variants={fadeIn}
@@ -79,7 +81,7 @@ const AboutUsPage: React.FC = () => {
                     <AnimatePresence mode="wait">
                         <Box
                             key={currentSlide}
-                            component={motion.div}
+                            component={MotionBox}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -108,7 +110,7 @@ const AboutUsPage: React.FC = () => {
                             pointerEvents: "none"
                         }}
                     >
-                        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
+                        <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeInUp}>
                             <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", letterSpacing: 2, fontSize: { xs: "2.4rem", md: "4rem" }, color: "#ffffff" }}>
                                 ABOUT US
                             </Typography>
@@ -118,7 +120,7 @@ const AboutUsPage: React.FC = () => {
 
                 {/* 2. GAMA VISUAL HISTORY SECTION */}
                 <Box
-                    component={motion.div}
+                    component={MotionBox}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
@@ -149,7 +151,7 @@ const AboutUsPage: React.FC = () => {
 
                 {/* 3. VISI & MISI SECTION */}
                 <Box
-                    component={motion.div}
+                    component={MotionBox}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
@@ -182,7 +184,7 @@ const AboutUsPage: React.FC = () => {
 
                 {/* 4. ACTIVITY SECTION */}
                 <Box
-                    component={motion.div}
+                    component={MotionBox}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
