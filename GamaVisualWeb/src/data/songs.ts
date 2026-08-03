@@ -1,8 +1,31 @@
 import tasyaImg from "../assets/Tasya.jpeg";
 import otnielImg from "../assets/KoOT.jpeg";
-import felixImg from "../assets/Felix.jpeg";  
-import bts1 from "../assets/SiaranRadioMei.jpeg";
-import bts2 from "../assets/SiaranRadioMei.jpeg";
+import felixImg from "../assets/Felix.jpeg"; 
+import bts1 from "../assets/behind.jpg";
+import bts2 from "../assets/behind.jpg"; 
+import q2 from "../assets/2.png";
+import q3 from "../assets/3.png";
+import q4 from "../assets/4.png";
+import q5 from "../assets/5.png";
+import q6 from "../assets/6.png";
+import q7 from "../assets/7.png";
+import q8 from "../assets/8.png";
+import q9 from "../assets/9.png";
+import q10 from "../assets/10.png";
+import q11 from "../assets/11.png";
+import q12 from "../assets/12.png";
+import q13 from "../assets/13.png";
+import q14 from "../assets/14.png";
+import q15 from "../assets/15.png";
+import q16 from "../assets/16.png";
+import q17 from "../assets/17.png";
+import q18 from "../assets/18.png";
+import q19 from "../assets/19.png";
+import q20 from "../assets/20.png";
+import q21 from "../assets/21.png";
+import q22 from "../assets/22.png";
+import q23 from "../assets/23.png";
+import q24 from "../assets/24.png";
 import KasihMuTakBerubah from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
 
 export interface Profile {
@@ -89,7 +112,7 @@ export const songCatalog: Song[] = [
         image: otnielImg 
       }
     ],
-    albumPhotos: [bts1, bts2],
+    albumPhotos: [q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24],
     
     images: {
       cover: KasihMuTakBerubah,
