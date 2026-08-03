@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { Box, Typography, Container, Button } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 import coverBg from "../assets/CoverBlur.png";
 
-const fadeInUp = {
+const MotionBox = motion(Box);
+
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } },
 };
 
 const ContactUsPage: React.FC = () => {
@@ -20,7 +22,7 @@ const ContactUsPage: React.FC = () => {
       <Navbar />
 
       <Box
-        component={motion.div}
+        component={MotionBox}
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -59,7 +61,7 @@ const ContactUsPage: React.FC = () => {
             mt: { xs: 6, md: 10 },
           }}
         >
-          <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp}>
+          <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeInUp}>
             <Typography
               variant="h2"
               sx={{
@@ -75,7 +77,7 @@ const ContactUsPage: React.FC = () => {
             </Typography>
           </Box>
 
-          <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.2 }}>
+          <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.2 }}>
             <Typography
               variant="h6"
               sx={{
@@ -106,7 +108,7 @@ const ContactUsPage: React.FC = () => {
             </Typography>
           </Box>
 
-          <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.4 }}>
+          <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeInUp} transition={{ delay: 0.4 }}>
             <Button
               href="https://www.instagram.com/gama.visual.ofc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
               variant="contained"

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Container, Grid, Button, Fab, Zoom } from "@mui/material";
+import { Box, Typography, Container, Button, Fab, Zoom } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 import coverImg from "../assets/CoverBlur.png"; 
 import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg"; 
 import siaran from "../assets/SiaranRadioMei.jpeg";
 
-const fadeInUp = {
+const MotionBox = motion(Box);
+
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
 };
 
 const HomePage: React.FC = () => {
@@ -46,7 +48,7 @@ const HomePage: React.FC = () => {
 
       {/* 1. HERO SECTION */}
       <Box
-        component={motion.div}
+        component={MotionBox}
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -74,7 +76,7 @@ const HomePage: React.FC = () => {
         
         {/* 2. QUOTE SECTION */}
         <Box 
-          component={motion.div}
+          component={MotionBox}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -88,80 +90,75 @@ const HomePage: React.FC = () => {
         </Box>
 
         {/* 3. VIDEO/ALBUM SECTION */}
-        <Grid 
-          container 
-          spacing={4} 
-          sx={{ mb: 15 }} 
-          justifyContent="center" 
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "repeat(2, minmax(0, 1fr))" },
+            gap: 4,
+            mb: 15,
+            justifyItems: "center"
+          }}
         >
           {[
             { img: thumbnail, url: "https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7" },
             { img: thumbnail, url: "https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7" }
           ].map((item, index) => (
-            <Grid 
-              item 
-              xs={12} 
-              sm={6} 
-              md={5} 
-              lg={5} 
+            <Box
               key={index}
+              component={MotionBox}
+              initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center"
+              }}
             >
               <Box
-                component={motion.div}
-                initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                component="a"
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 sx={{ 
                   width: "100%",
-                  display: "flex",
-                  justifyContent: "center"
+                  maxWidth: "510px", 
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                  lineHeight: 0,
+                  boxShadow: "0px 10px 30px rgba(0,0,0,0.5)",
+                  transition: "transform 0.3s ease-in-out",
+                  cursor: "pointer",
+                  textDecoration: "none",
+                  backgroundColor: "transparent",
+                  "&:hover": { 
+                    transform: "scale(1.05)" 
+                  },
+                  marginRight: index === 0 ? 9 : 0
                 }}
               >
                 <Box
-                  component="a"
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ 
+                  component="img"
+                  src={item.img}
+                  alt={`Album ${index + 1}`}
+                  sx={{
                     width: "100%",
-                    maxWidth: "510px", 
-                    borderRadius: "20px",
-                    overflow: "hidden",
-                    lineHeight: 0, // Penting: Menghilangkan whitespace ekstra di bawah elemen inline
-                    boxShadow: "0px 10px 30px rgba(0,0,0,0.5)",
-                    transition: "transform 0.3s ease-in-out",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    backgroundColor: "transparent", // Memastikan tidak ada background warna lain
-                    "&:hover": { 
-                      transform: "scale(1.05)" 
-                    },
-                    marginRight: index === 0 ? 9 : 0 // Memberi margin hanya pada item pertama
+                    height: "100%",
+                    display: "block",
+                    objectFit: "cover",
+                    aspectRatio: "16/9"
                   }}
-                >
-                  <Box
-                    component="img"
-                    src={item.img}
-                    alt={`Album ${index + 1}`}
-                    sx={{
-                      width: "100%",
-                      height: "100%", // Mengisi seluruh area box
-                      display: "block",
-                      objectFit: "cover", // Memotong sedikit jika rasio berbeda agar box terisi penuh
-                      aspectRatio: "16/9" // Memaksa gambar mengikuti rasio standar YouTube
-                    }}
-                  />
-                </Box>
+                />
               </Box>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
 
         {/* 4. ABOUT SECTION */}
         <Box
           id="about-section"
-          component={motion.div}
+          component={MotionBox}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -249,11 +246,11 @@ const HomePage: React.FC = () => {
             Behind The Scene
           </Typography>
 
-          <Grid container spacing={3} justifyContent="center">
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "repeat(3, minmax(0, 1fr))" }, gap: 3, justifyContent: "center" }}>
             {[siaran, siaran, siaran].map((path, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box key={index}>
                 <Box
-                  component={motion.div}
+                  component={MotionBox}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -262,7 +259,7 @@ const HomePage: React.FC = () => {
                     width: "100%",
                     borderRadius: "16px",
                     overflow: "hidden",
-                    lineHeight: 0, // Menghilangkan gap kecil di bawah gambar
+                    lineHeight: 0,
                     boxShadow: "0px 4px 20px rgba(0,0,0,0.3)",
                     transition: "all 0.3s ease-in-out",
                     "&:hover": {
@@ -278,15 +275,15 @@ const HomePage: React.FC = () => {
                     alt={`Behind the scene ${index + 1}`}
                     sx={{
                       width: "100%",
-                      height: "280px", // Kamu bisa ganti ke "auto" jika ingin mengikuti rasio asli
-                      objectFit: "cover", // Memastikan gambar memenuhi kotak tanpa gepeng
+                      height: "280px",
+                      objectFit: "cover",
                       display: "block"
                     }}
                   />
                 </Box>
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Box>
         </Box>
 
       </Container>

@@ -11,23 +11,25 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 
 // IMAGE IMPORTS
 import coverBlur from "../assets/CoverBlur.png"; 
-import otnil from "../assets/koOT.jpeg";
+import otnil from "../assets/KoOT.jpeg";
 import tasya from "../assets/Tasya.jpeg";
 import felix from "../assets/Felix.jpeg";
 import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
 
-const fadeInUp = {
+const MotionBox = motion(Box);
+
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
 };
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1.5 } }
 };
@@ -202,7 +204,7 @@ const MemberPage: React.FC = () => {
       <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
         
         {/* --- CAROUSEL SLIDER HEADER --- */}
-        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 10 }}>
+        <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 10 }}>
           <IconButton 
             onClick={() => scrollCarousel("left")}
             sx={{ 
@@ -248,7 +250,7 @@ const MemberPage: React.FC = () => {
                 {slide.title && (
                   <Box sx={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(5, 10, 48, 0.4), rgba(5, 10, 48, 0.75))", zIndex: 1 }} />
                 )}
-                <Box component={motion.div} initial="hidden" animate="visible" variants={fadeInUp} sx={{ zIndex: 2, px: 4, maxWidth: "800px" }}>
+                <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeInUp} sx={{ zIndex: 2, px: 4, maxWidth: "800px" }}>
                   <Typography variant="h2" sx={{ fontWeight: 900, textTransform: "uppercase", fontSize: { xs: "2rem", md: "4rem" }, mb: 2, color: "#ffffff" }}>
                     {slide.title}
                   </Typography>
@@ -282,7 +284,7 @@ const MemberPage: React.FC = () => {
         {memberData.founders.map((item, index) => (
           <Box 
             key={`founder-detail-${index}`} 
-            component={motion.div} 
+            component={MotionBox} 
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true, amount: 0.2 }} 
@@ -349,7 +351,7 @@ const MemberPage: React.FC = () => {
         {memberData.singers.map((item, index) => (
           <Box 
             key={`singer-detail-${index}`} 
-            component={motion.div} 
+            component={MotionBox} 
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true, amount: 0.2 }} 
@@ -413,7 +415,7 @@ const MemberPage: React.FC = () => {
           {memberData.cards.map((card, index) => (
             <Box 
               key={`card-${index}`}
-              component={motion.div}
+              component={MotionBox}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}

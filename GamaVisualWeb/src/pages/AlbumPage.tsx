@@ -4,7 +4,7 @@ import type { SelectChangeEvent } from "@mui/material/Select";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 import coverImg from "../assets/CoverBlur.png";
@@ -14,12 +14,14 @@ import faith from "../assets/ResilienceFaith2.png";
 // 1. IMPORT USE NAVIGATE
 import { useNavigate } from "react-router-dom"; 
 
-const fadeInUp = {
+const MotionBox = motion(Box);
+
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
 };
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1.5 } }
 };
@@ -164,7 +166,7 @@ const AlbumPage: React.FC = () => {
 
         <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
     
-        <Box component={motion.div} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 8 }}>
+        <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 8 }}>
             
             <IconButton 
             onClick={() => scrollCarousel("left")}
@@ -340,21 +342,23 @@ const AlbumPage: React.FC = () => {
 
         {/* SECTION: DETAILED SONG LIST */}
         {songs.map((song, index) => (
-          <Box 
+          <motion.div
             key={`song-detail-${index}`} 
-            ref={(el) => (songRefs.current[index] = el)}
-            component={motion.div} 
+            ref={(el) => {
+              songRefs.current[index] = el;
+            }}
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true, amount: 0.2 }} 
             variants={fadeInUp} 
-            sx={{ mb: 12, scrollMarginTop: "100px" }}
+            style={{ marginBottom: "3rem", scrollMarginTop: "100px" }}
           >
-            <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", textAlign: "center", mb: 6 }}>
-              {song.title}
-            </Typography>
+            <Box sx={{ mb: 12, scrollMarginTop: "100px" }}>
+              <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", textAlign: "center", mb: 6 }}>
+                {song.title}
+              </Typography>
 
-            <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
+              <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
               
                 <Box sx={{ width: { xs: "100%", md: "50%" }, flexShrink: 0 }}>
                 <Box 
@@ -420,8 +424,9 @@ const AlbumPage: React.FC = () => {
                     </Box>
                 </Box>
 
+              </Box>
             </Box>
-          </Box>
+          </motion.div>
         ))}
 
       </Container>
