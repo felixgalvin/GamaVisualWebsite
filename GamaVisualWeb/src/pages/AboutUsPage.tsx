@@ -7,10 +7,13 @@ import Footer from "../routes/BottomNav";
 
 // Import your assets
 import heroImg from "../assets/CoverBlur.png";
-import heroImg2 from "../assets/Gratitude.png";
+import heroImg2 from "../assets/FotoGladi.png";
+import heroImg3 from "../assets/aboutus.jpg";
+import heroImg4 from "../assets/behind.jpg";
+import heroImg5 from "../assets/SiaranRadioMei.jpeg";
 import activity1 from "../assets/SiaranRadioMei.jpeg";
-import activity2 from "../assets/CoverBlur.png";
-import activity3 from "../assets/CoverBlur.png";
+import activity2 from "../assets/behind.jpg";
+import activity3 from "../assets/aboutus2.jpg";
 
 const MotionBox = motion(Box);
 
@@ -24,12 +27,12 @@ const fadeIn: Variants = {
     visible: { opacity: 1, transition: { duration: 1.5 } }
 };
 
-const heroImages = [heroImg, heroImg2];
+const heroImages = [heroImg, heroImg2, heroImg3, heroImg4, heroImg5];
 
 const activitiesData = [
     { img: activity1, title: "Siaran Radio Kharisma 96.8FM", date: "23 Mei 2026" },
-    { img: activity2, title: "Live Recording Session", date: "10 Juni 2026" },
-    { img: activity3, title: "Vocal Workshop", date: "15 Juli 2026" },
+    { img: activity2, title: "Recording Session", date: "17 Juli 2026" },
+    { img: activity3, title: "Shooting Session", date: "20 Juli 2026" },
 ];
 
 const AboutUsPage: React.FC = () => {

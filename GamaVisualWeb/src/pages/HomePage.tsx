@@ -8,6 +8,8 @@ import Footer from "../routes/BottomNav";
 import coverImg from "../assets/CoverBlur.png";
 import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
 import siaran from "../assets/SiaranRadioMei.jpeg";
+import behind from "../assets/behind.jpg";
+import aboutus from "../assets/aboutus.jpg";
 
 const MotionBox = motion(Box);
 
@@ -247,7 +249,7 @@ const HomePage: React.FC = () => {
           </Typography>
 
           <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "repeat(3, minmax(0, 1fr))" }, gap: 3, justifyContent: "center" }}>
-            {[siaran, siaran, siaran].map((path, index) => (
+            {[siaran, behind, aboutus].map((path, index) => (
               <Box key={index}>
                 <Box
                   component={MotionBox}
