@@ -43,7 +43,7 @@ const memberData = {
   header: [
     { 
       title: "MEMBER PROFILE", 
-      desc: "bisa highlight per orang, atau foto all member crew pas shoot atau behind the scene", 
+      desc: "all member crew", 
       img: coverBlur,
       aspectRatio: "16/9", // <--- ATUR RASIO BANNER UTAMA DI SINI
       cropPos: "center"     // <--- ATUR POTONGAN GAMBAR BANNER DI SINI
