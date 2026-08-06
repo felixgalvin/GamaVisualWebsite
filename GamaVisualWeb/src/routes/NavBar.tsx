@@ -126,13 +126,15 @@ const Navbar: React.FC = () => {
               color: "#ffffff",
               height: "auto",
               maxHeight: "calc(100vh - 80px)",
+              overflowX: "hidden",
               alignSelf: "flex-start",
               borderBottomLeftRadius: 16,
+              width: { xs: "min(64vw, 150px)", sm: 170 },
             },
           },
         }}
       >
-        <Box sx={{ width: { xs: "min(90vw, 180px)", sm: 180 }, p: 2 }}>
+        <Box sx={{ width: { xs: "100%", sm: 170 }, p: 2 }}>
           <List>
             {navItems.map((item) => (
               <ListItem key={item.label} disablePadding>
