@@ -7,8 +7,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 
-const MotionBox = motion(Box);
-
 // IMAGE IMPORTS 
 import cover1 from "../assets/CoverQuotes1.png";
 import cover2 from "../assets/CoverQuotes2.png";
