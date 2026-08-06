@@ -98,7 +98,8 @@ const QuoteSlider = ({
       <Box sx={{ 
         position: "relative", 
         width: "100%", 
-        height: { xs: "320px", md: height }, 
+        height: { xs: "56vw", md: height },
+        aspectRatio: { xs: "16/9", md: "16/9" },
         borderRadius: "24px",
         overflow: "hidden",
         boxShadow: "0px 15px 50px rgba(0,0,0,0.6)",
@@ -119,10 +120,10 @@ const QuoteSlider = ({
 
         {!autoPlay && (
           <>
-            <IconButton onClick={handlePrev} sx={{ position: "absolute", left: 15, top: "50%", zIndex: 2, color: "#fff", bgcolor: "rgba(255,255,255,0.1)", "&:hover": { bgcolor: "rgba(255,255,255,0.2)" } }}>
+            <IconButton onClick={handlePrev} sx={{ position: "absolute", left: { xs: 8, md: 15 }, top: "50%", transform: "translateY(-50%)", zIndex: 2, color: "#fff", bgcolor: "rgba(255,255,255,0.1)", "&:hover": { bgcolor: "rgba(255,255,255,0.2)" } }}>
               <ArrowBackIosNewIcon />
             </IconButton>
-            <IconButton onClick={handleNext} sx={{ position: "absolute", right: 15, top: "50%", zIndex: 2, color: "#fff", bgcolor: "rgba(255,255,255,0.1)", "&:hover": { bgcolor: "rgba(255,255,255,0.2)" } }}>
+            <IconButton onClick={handleNext} sx={{ position: "absolute", right: { xs: 8, md: 15 }, top: "50%", transform: "translateY(-50%)", zIndex: 2, color: "#fff", bgcolor: "rgba(255,255,255,0.1)", "&:hover": { bgcolor: "rgba(255,255,255,0.2)" } }}>
               <ArrowForwardIosIcon />
             </IconButton>
           </>
@@ -130,7 +131,7 @@ const QuoteSlider = ({
 
         {/* DOTS HANYA MUNCUL JIKA BUKAN HEADER (AutoPlay Section) */}
         {!isHeader && (
-          <Box sx={{ position: "absolute", bottom: 25, width: "100%", display: "flex", justifyContent: "center", gap: 1.5, zIndex: 2 }}>
+          <Box sx={{ position: "absolute", bottom: { xs: 14, md: 25 }, width: "100%", display: "flex", justifyContent: "center", gap: 1.5, zIndex: 2 }}>
             {images.map((_, i) => (
               <Box 
                 key={i} 
@@ -140,7 +141,7 @@ const QuoteSlider = ({
                   height: 8, 
                   borderRadius: "4px", 
                   bgcolor: i === currentIndex ? "#fff" : "rgba(255,255,255,0.4)",
-                  transition: "all 3s ease",
+                  transition: "all 0.25s ease",
                   cursor: "pointer"
                 }} 
               />
