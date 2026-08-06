@@ -7,7 +7,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
-import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
+import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.png";
 import faith from "../assets/ResilienceFaith2.png";
 
 // 1. IMPORT USE NAVIGATE

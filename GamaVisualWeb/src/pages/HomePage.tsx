@@ -6,10 +6,10 @@ import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 import coverImg from "../assets/CoverBlur.png";
-import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
+import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.png";
 import siaran from "../assets/SiaranRadioMei.jpeg";
 import behind from "../assets/behind.jpg";
-import aboutus from "../assets/aboutus.jpg";
+import aboutus from "../assets/aboutus.png";
 
 const MotionBox = motion(Box);
 

@@ -20,7 +20,7 @@ import coverBlur from "../assets/CoverBlur.png";
 import otnil from "../assets/KoOT.jpeg";
 import tasya from "../assets/Tasya.jpeg";
 import felix from "../assets/Felix.jpeg";
-import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
+import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.png";
 
 const MotionBox = motion(Box);
 

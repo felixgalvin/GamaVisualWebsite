@@ -26,7 +26,7 @@ import q21 from "../assets/21.png";
 import q22 from "../assets/22.png";
 import q23 from "../assets/23.png";
 import q24 from "../assets/24.png";
-import KasihMuTakBerubah from "../assets/YTThumbnailKasihMuTakBerubah.jpg";
+import KasihMuTakBerubah from "../assets/YTThumbnailKasihMuTakBerubah.png";
 
 export interface Profile {
   name: string;

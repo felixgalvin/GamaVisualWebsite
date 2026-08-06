@@ -8,7 +8,7 @@ import Footer from "../routes/BottomNav";
 // Import your assets
 import heroImg from "../assets/CoverBlur.png";
 import heroImg2 from "../assets/FotoGladi.png";
-import heroImg3 from "../assets/aboutus.jpg";
+import heroImg3 from "../assets/aboutus.png";
 import heroImg4 from "../assets/behind.jpg";
 import heroImg5 from "../assets/SiaranRadioMei.jpeg";
 import activity1 from "../assets/SiaranRadioMei.jpeg";
