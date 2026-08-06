@@ -1,4 +1,4 @@
-import tasyaImg from "../assets/Tasya.jpeg";
+import tasyaImg from "../assets/Tasya.jpg";
 import otnielImg from "../assets/KoOT.jpeg";
 import felixImg from "../assets/Felix.jpeg"; 
 import bts1 from "../assets/behind.jpg";
@@ -108,7 +108,7 @@ export const songCatalog: Song[] = [
       {
         name: "Otniel",
         job: "Producer",
-        bio: 'Hidup memang tidak selalu mudah. Ada banyak cobaan, air mata, dan pergumulan yang harus dilewati. Tetapi sebagai orang percaya, kita yakin bahwa Tuhan tidak pernah meninggalkan anak-anak-Nya. Saat kita lemah, Tuhan menguatkan. Saat kita hampir jatuh, Tuhan menopang. Kasih-Nya tidak berubah oleh keadaan dan tetap setia sampai selama-lamanya. Tetaplah percaya, karena setiap badai pasti berlalu, dan Tuhan selalu punya rencana yang indah pada waktunya.',
+        bio: 'Lagu “Satu dalam Doa” mengingatkan bahwa meskipun berbeda suku, ras, dan budaya, kita tetap satu dalam kasih Tuhan dan iman kepada-Nya. Perbedaan menjadi kekuatan untuk hidup dalam persatuan dan damai. Kiranya melalui doa bersama, Tuhan melawat Indonesia, memberi damai, persatuan, dan memberkati bangsa ini agar selalu hidup dalam kasih dan takut akan Tuhan.',
         image: otnielImg 
       }
     ],

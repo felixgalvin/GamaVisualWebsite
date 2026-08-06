@@ -7,9 +7,10 @@ import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 import coverImg from "../assets/CoverBlur.png";
 import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.png";
-import siaran from "../assets/SiaranRadioMei.jpeg";
-import behind from "../assets/behind.jpg";
-import aboutus from "../assets/aboutus.png";
+import thumbnail2 from "../assets/YTThumbnailSDD.png";
+import behind from "../assets/SiaranRadioMei.jpeg";
+import behind2 from "../assets/aboutus6.png";
+import behind3 from "../assets/aboutus.png";
 
 const MotionBox = motion(Box);
 
@@ -103,7 +104,7 @@ const HomePage: React.FC = () => {
         >
           {[
             { img: thumbnail, url: "https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7" },
-            { img: thumbnail, url: "https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7" }
+            { img: thumbnail2, url: "https://youtu.be/utt1EwW945g" }
           ].map((item, index) => (
             <Box
               key={index}
@@ -249,7 +250,7 @@ const HomePage: React.FC = () => {
           </Typography>
 
           <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "repeat(3, minmax(0, 1fr))" }, gap: 3, justifyContent: "center" }}>
-            {[siaran, behind, aboutus].map((path, index) => (
+            {[behind, behind2, behind3].map((path, index) => (
               <Box key={index}>
                 <Box
                   component={MotionBox}

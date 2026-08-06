@@ -18,9 +18,10 @@ import Footer from "../routes/BottomNav";
 // IMAGE IMPORTS
 import coverBlur from "../assets/CoverBlur.png"; 
 import otnil from "../assets/KoOT.jpeg";
-import tasya from "../assets/Tasya.jpeg";
+import tasya from "../assets/Tasya.jpg";
 import felix from "../assets/Felix.jpeg";
 import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.png";
+import thumbnail2 from "../assets/YTThumbnailSDD.png";
 
 const MotionBox = motion(Box);
 
@@ -43,7 +44,7 @@ const memberData = {
   header: [
     { 
       title: "MEMBER PROFILE", 
-      desc: "all member crew", 
+      desc: "Gama Visual Member's", 
       img: coverBlur,
       aspectRatio: "16/9", // <--- ATUR RASIO BANNER UTAMA DI SINI
       cropPos: "center"     // <--- ATUR POTONGAN GAMBAR BANNER DI SINI
@@ -117,11 +118,12 @@ const memberData = {
       desc: "Lagu ini mulai kami rancang di tahun 2025. Saat kami sedang menghadapi jalan buntu, bahkan tidak tau harus berbuat apa..." 
     },
     { 
-      name: "Felix Galvin", 
-      image: felix, 
+      name: "Tasya & Felix Galvin", 
+      image: thumbnail2, 
       aspectRatio: "18/10", 
-      cropPos: "50% 30%",    
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
+      cropPos: "50% 30%",  
+      songId: "satu-dalam-doa",  
+      desc: "Karya ini lahir sebagai ungkapan syukur sekaligus pengingat bahwa di tengah keberagaman suku, ras, budaya, dan latar belakang..." 
     }
   ]
 };
