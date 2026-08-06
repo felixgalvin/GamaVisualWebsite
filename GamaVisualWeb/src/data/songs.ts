@@ -1,8 +1,6 @@
 import tasyaImg from "../assets/Tasya.jpg";
 import otnielImg from "../assets/KoOT.jpeg";
-import felixImg from "../assets/Felix.jpeg"; 
-import bts1 from "../assets/behind.jpg";
-import bts2 from "../assets/behind.jpg"; 
+import felixImg from "../assets/Felix.jpeg";
 import q2 from "../assets/2.png";
 import q3 from "../assets/3.png";
 import q4 from "../assets/4.png";
@@ -26,7 +24,18 @@ import q21 from "../assets/21.png";
 import q22 from "../assets/22.png";
 import q23 from "../assets/23.png";
 import q24 from "../assets/24.png";
+import m1sdd from "../assets/m1sdd.png";
+import m2sdd from "../assets/m2sdd.png";
+import m3sdd from "../assets/m3sdd.png";
+import m4sdd from "../assets/m4sdd.png";
+import m5sdd from "../assets/m5sdd.png";
+import m6sdd from "../assets/m6sdd.png";
+import m7sdd from "../assets/m7sdd.png";
+
+import bts1 from "../assets/SiaranRadioMei.jpeg";
+
 import KasihMuTakBerubah from "../assets/YTThumbnailKasihMuTakBerubah.png";
+import SatuDalamDoa from "../assets/YTThumbnailSDD.png";
 
 export interface Profile {
   name: string;
@@ -43,13 +52,14 @@ export interface Song {
   bibleVerseRef: string;
   lyrics: string;
   description: string;
+  shortDescription?: string;
   profiles: Profile[]; 
   albumPhotos?: string[];
+  bts?: string[];
   images: {
     cover: string;
-    bts1: string;
-    bts2: string;
   };
+  ytLink: string;
 }
 
 export const songCatalog: Song[] = [
@@ -60,8 +70,8 @@ export const songCatalog: Song[] = [
     bibleVerseText: '"TUHAN menetapkan langkah-langkah orang yang hidupnya berkenan kepada-Nya; apabila ia jatuh, tidaklah sampai tergeletak, sebab TUHAN menopang tangannya."',
     bibleVerseRef: "Mazmur 37: 23-24",
     lyrics: "Verse\nSaat ku lemah Kau angkat diriku\nSaat ku terjatuh Tuhan menolongku\n\nReff\nKasih-Mu tak berubah selamanya di hidupku\nMengalir s'panjang waktu\nYesus Kau di hidupku\n\nBridge\nDi tengah badai Kau beri damai\nDalam susahku Kau menyertaiku\nDi tengah topan Kau pegang tanganku\nS'lamanya kupercaya janji-Mu s'lalu",
-    description: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas. Sesuai dengan ayat Alkitab dalam MAZMUR 37:23-24 (TB) TUHAN menetapkan langkah-langkah orang yang hidupnya berkenan kepada-Nya; apabila ia jatuh, tidaklah sampai tergeletak, sebab TUHAN menopang tangannya. Selamat mendengarkan, Tuhan Yesus memberkati.",
-    
+    description: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas. Sesuai dengan ayat Alkitab dalam MAZMUR 37:23-24 (TB). Selamat mendengarkan, Tuhan Yesus memberkati.",
+    shortDescription: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas. Selamat mendengarkan, Tuhan Yesus memberkati.",
     profiles: [
       {
         name: "Tasya",
@@ -76,22 +86,21 @@ export const songCatalog: Song[] = [
         image: otnielImg 
       }
     ],
-    
+    bts: [bts1],
     images: {
-      cover: KasihMuTakBerubah,
-      bts1: bts1,
-      bts2: bts2,
-    }
+      cover: KasihMuTakBerubah
+    },
+    ytLink: "https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7"
   }, 
   {
     id: "satu-dalam-doa",
     title: "Satu Dalam Doa",
     releaseInfo: "17 Agustus 2026 - Tasya & Felix",
-    bibleVerseText: 'Karya ini lahir sebagai ungkapan syukur sekaligus pengingat bahwa di tengah keberagaman suku, ras, budaya, dan latar belakang, kita tetap dipersatukan oleh kasih Tuhan. Melalui lagu "Satu dalam Doa", kami ingin mengajak setiap pendengar untuk terus menjunjung tinggi persaudaraan, saling mengasihi tanpa memandang perbedaan, serta percaya bahwa keberagaman adalah anugerah yang menjadi kekuatan bagi bangsa Indonesia. Bertepatan dengan peringatan Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-81 pada 17 Agustus 2026, kiranya lagu ini dapat menjadi pengingat untuk kembali membangun persatuan, menghadirkan damai melalui doa, dan memohon agar Tuhan terus melawat serta memberkati Indonesia. Seperti yang tertulis dalam Kolose 3:14 (TB) \n"Dan di atas semuanya itu: kenakanlah kasih, sebagai pengikat yang mempersatukan dan menyempurnakan." \nSelamat mendengarkan, Tuhan Yesus memberkati.',
+    bibleVerseText: '"Dan di atas semuanya itu: kenakanlah kasih, sebagai pengikat yang mempersatukan dan menyempurnakan."',
     bibleVerseRef: "Kolose 3:14",
     lyrics: "(Verse 1)\nDi bawah langit yang sama kita berpijak\nDari ufuk timur hingga ke barat\nKulit kita berbeda, tutur kata tak serupa\nNamun satu detak jantung untuk Indonesia\n\n(Pre-Chorus)\n(Sunda): \nHiji rasa, dina haté anu suci \n*Satu rasa, di dalam hati yang suci*\n(Batak): \nSada ma hita, rap marlas ni roha\n*Satu lah kita, bersama bersukacita*\n(Jawa): \nMbangun paseduluran ingkang nyawiji\n*Membangun persaudaraan yang menyatu*\n\n(Chorus)\nWalau berbeda suku dan budaya\nKita adalah satu, Bhinneka Tunggal Ika\nTuhan, jamah tanah air kami\nJadikan Indonesia luar biasa\nDi dalam tangan-Mu, kami bersatu\n\n(Verse 2)\n(NTT/Kupang): \nKatong pung kawan, katong pung sodara\n*Teman kita, saudara kita*\n(Pontianak): \nBudak melayu, dayak, Tionghoa (Tyonghwa), semue bise kumpul mace\nTak ada sekat yang mampu memisahkan\nSatu darah, satu bangsa, satu tujuan\n*Anak Melayu, Dayak, Tionghoa, semua bisa berkumpul jadi satu*\n\nBack to (Chorus) \n\n(Bridge)\nCurahkan berkat-Mu Tuhan\nAtas pulau-pulau kami\nBiar kemuliaan-Mu nyata di negeri ini\nIndonesia... Jaya!\n\n(Outro)\nTuhan memberkati \nTuhan memberkati\nTuhan memberkati\nNusantara (3x)",
-    description: '',
-    
+    description: 'Karya ini lahir sebagai ungkapan syukur sekaligus pengingat bahwa di tengah keberagaman suku, ras, budaya, dan latar belakang, kita tetap dipersatukan oleh kasih Tuhan. Melalui lagu "Satu dalam Doa", kami ingin mengajak setiap pendengar untuk terus menjunjung tinggi persaudaraan, saling mengasihi tanpa memandang perbedaan, serta percaya bahwa keberagaman adalah anugerah yang menjadi kekuatan bagi bangsa Indonesia. Bertepatan dengan peringatan Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-81 pada 17 Agustus 2026, kiranya lagu ini dapat menjadi pengingat untuk kembali membangun persatuan, menghadirkan damai melalui doa, dan memohon agar Tuhan terus melawat serta memberkati Indonesia, seperti yang tertulis dalam Kolose 3:14 (TB). Selamat mendengarkan, Tuhan Yesus memberkati.',
+    shortDescription: 'Karya ini lahir sebagai ungkapan syukur sekaligus pengingat bahwa di tengah keberagaman suku, ras, budaya, dan latar belakang, kita tetap dipersatukan oleh kasih Tuhan. Melalui lagu "Satu dalam Doa", kami ingin mengajak setiap pendengar untuk terus menjunjung tinggi persaudaraan.',
     profiles: [
       {
         name: "Tasya",
@@ -113,12 +122,11 @@ export const songCatalog: Song[] = [
       }
     ],
     albumPhotos: [q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24],
-    
+    bts: [m1sdd, m2sdd, m3sdd, m4sdd, m5sdd, m6sdd, m7sdd],
     images: {
-      cover: KasihMuTakBerubah,
-      bts1: bts1,
-      bts2: bts2,
-    }
+      cover: SatuDalamDoa
+    },
+    ytLink: "https://youtu.be/utt1EwW945g"
   },
   // Template
   // {

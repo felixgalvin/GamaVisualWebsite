@@ -211,7 +211,7 @@ const MemberPage: React.FC = () => {
             onClick={() => scrollCarousel("left")}
             sx={{ 
               position: "absolute", left: { xs: 12, md: 30 }, top: "50%", transform: "translateY(-50%)",
-              bgcolor: "rgba(255,255,255,0.9)", opacity: 0.7, color: "#000", zIndex: 10,
+              bgcolor: "rgba(255,255,255,0.9)", opacity: 0.2, color: "#000", zIndex: 10,
               boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", "&:hover": { bgcolor: "#fff", opacity: 1 } 
             }}
           >
@@ -222,7 +222,7 @@ const MemberPage: React.FC = () => {
             onClick={() => scrollCarousel("right")}
             sx={{ 
               position: "absolute", right: { xs: 12, md: 30 }, top: "50%", transform: "translateY(-50%)",
-              bgcolor: "rgba(255,255,255,0.9)", opacity: 0.7, color: "#000", zIndex: 10,
+              bgcolor: "rgba(255,255,255,0.9)", opacity: 0.2, color: "#000", zIndex: 10,
               boxShadow: "0px 4px 10px rgba(0,0,0,0.3)", "&:hover": { bgcolor: "#fff", opacity: 1 } 
             }}
           >
