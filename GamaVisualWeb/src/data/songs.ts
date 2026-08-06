@@ -1,6 +1,8 @@
 import tasyaImg from "../assets/Tasya.jpg";
 import otnielImg from "../assets/KoOT.jpeg";
-import felixImg from "../assets/Felix.jpeg";
+import felixImgSDD from "../assets/felixsdd.png";
+import tasyaImgSDD from "../assets/tasyasdd.jpg";
+import otnielImgSDD from "../assets/kootsdd.png";
 import q2 from "../assets/2.png";
 import q3 from "../assets/3.png";
 import q4 from "../assets/4.png";
@@ -106,19 +108,19 @@ export const songCatalog: Song[] = [
         name: "Tasya",
         job: "Singer",
         bio: 'Lagu Satu Dalam Doa mengingatkan bahwa kita adalah makhluk sosial yang dimana kita membutuhkan orang lain dalam hidup kita meskipun mereka berbeda suku, ras, dan agamanya. Bukan hanya makhluk sosial tetapi kita juga harus mengasihi satu dengan yang lain tanpa pandang bulu, sama seperti Tuhan yang sudah terlebih dahulu mengasihi kita tanpa memandang siapa diri kita. Karena itu marilah kita menjunjung tinggi tali persaudaraan yang erat agar kita tetap bersatu meskipun kita memiliki latar belakang yang berbeda-beda.',
-        image: tasyaImg
+        image: tasyaImgSDD
       },
       {
         name: "Felix",
         job: "Singer",
         bio: 'Lagu Satu Dalam Doa menjadi lagu yang kembali mengingatkan saya akan persatuan dan harapan dari Bhineka Tunggal Ika. Perbedaan merupakan kekuatan kita Indonesia, bukan kelemahan. Perjuangan yang telah diupayakan pada masa lalu jangan kita sia-siakan, marilah kita perjuangkan. Semangat Indonesia! Tuhan Yesus beserta dengan kita!',
-        image: felixImg
+        image: felixImgSDD
       },
       {
         name: "Otniel",
         job: "Producer",
         bio: 'Lagu “Satu dalam Doa” mengingatkan bahwa meskipun berbeda suku, ras, dan budaya, kita tetap satu dalam kasih Tuhan dan iman kepada-Nya. Perbedaan menjadi kekuatan untuk hidup dalam persatuan dan damai. Kiranya melalui doa bersama, Tuhan melawat Indonesia, memberi damai, persatuan, dan memberkati bangsa ini agar selalu hidup dalam kasih dan takut akan Tuhan.',
-        image: otnielImg 
+        image: otnielImgSDD 
       }
     ],
     albumPhotos: [q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24],
