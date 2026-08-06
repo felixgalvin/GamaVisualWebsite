@@ -62,16 +62,16 @@ const HomePage: React.FC = () => {
           backgroundPosition: "center center",
           display: "flex",
           flexDirection: "column",
-          justifyContent: { xs: "flex-start", md: "center" },
+          justifyContent: { xs: "center", md: "center" },
           alignItems: "center",
           textAlign: "center",
-          pt: { xs: "70px", md: 0 },
+          pt: { xs: 0, md: 0 },
         }}
       >
         <Box
           component="img"
           src="LogoGama.PNG"
-          sx={{ width: { xs: "80%", md: "50%" }, maxWidth: "600px", mb: 2, marginTop: { xs: "110px", md: "80px" } }}
+          sx={{ width: { xs: "80%", md: "50%" }, maxWidth: "600px", mb: 2, marginTop: { xs: 0, md: "80px" } }}
         />
       </Box>
 

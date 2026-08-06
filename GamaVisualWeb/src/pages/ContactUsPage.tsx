@@ -34,9 +34,9 @@ const ContactUsPage: React.FC = () => {
           backgroundPosition: "center",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: { xs: "flex-start", md: "center" },
           position: "relative",
-          pt: { xs: 12, md: 0 },
+          pt: { xs: 6, md: 0 },
         }}
       >
         <Box
@@ -58,7 +58,8 @@ const ContactUsPage: React.FC = () => {
             alignItems: "center",
             textAlign: "center",
             px: { xs: 3, md: 0 },
-            mt: { xs: 6, md: 10 },
+            pt: { xs: 4, md: 0 },
+            mt: { xs: 2, md: 10 },
           }}
         >
           <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeInUp}>
@@ -113,14 +114,16 @@ const ContactUsPage: React.FC = () => {
               href="https://www.instagram.com/gama.visual.ofc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
               variant="contained"
               sx={{
-                px: 5,
-                py: 1.8,
+                px: { xs: 4, md: 5 },
+                py: { xs: 1.5, md: 1.8 },
+                minWidth: { xs: "100%", sm: "auto" },
+                width: { xs: "100%", md: "auto" },
                 borderRadius: "999px",
                 backgroundColor: "#FFFFFF",
                 color: "#050A30",
                 textTransform: "none",
                 fontWeight: 700,
-                fontSize: "0.95rem",
+                fontSize: { xs: "0.9rem", md: "0.95rem" },
                 boxShadow: "0px 18px 40px rgba(0, 0, 0, 0.18)",
                 transition: "transform 0.25s ease, background-color 0.25s ease",
                 '&:hover': {
