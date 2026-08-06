@@ -7,6 +7,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
 
+const MotionBox = motion(Box);
+
 // IMAGE IMPORTS 
 import cover1 from "../assets/CoverQuotes1.png";
 import cover2 from "../assets/CoverQuotes2.png";
@@ -88,7 +90,7 @@ const QuoteSlider = ({
   const slideTransitionDuration = autoPlay ? 1.5 : 2; // header fade duration vs manual carousel duration
 
   return (
-    <Box sx={{ mb: 12, textAlign: "center" }}>
+    <Box sx={{ mb: { xs: 6, md: 12 }, textAlign: "center" }}>
       {!isHeader && (
         <Typography variant="h4" sx={{ fontWeight: 800, mb: 4, textTransform: "uppercase", letterSpacing: 2 }}>
           {title}
@@ -141,7 +143,7 @@ const QuoteSlider = ({
                   height: 8, 
                   borderRadius: "4px", 
                   bgcolor: i === currentIndex ? "#fff" : "rgba(255,255,255,0.4)",
-                  transition: "all 0.25s ease",
+                  transition: "all 3s ease",
                   cursor: "pointer"
                 }} 
               />
@@ -199,9 +201,9 @@ const QuotePage: React.FC = () => {
         />
 
         {/* Section 2: Navigasi Button */}
-        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 2, mb: 15 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: { xs: 1.5, md: 2 }, mb: { xs: 8, md: 15 } }}>
           {categories.map((cat) => (
-            <Box key={cat.id}>
+            <Box key={cat.id} sx={{ width: { xs: "100%", sm: "auto" }, display: "flex", justifyContent: "center" }}>
               <Button
                 variant="contained"
                 onClick={() => scrollToSection(cat.id)}
@@ -229,12 +231,10 @@ const QuotePage: React.FC = () => {
               sectionRefs.current[cat.id] = el;
             }}
             style={{
-              paddingTop: cat.id === "inner-peace" ? 0 : 40,
-              marginTop: cat.id === "inner-peace" ? "-40px" : 0,
               scrollMarginTop: cat.id === "inner-peace" ? "100px" : "0px"
             }}
           >
-            <Box sx={{ pt: cat.id === "inner-peace" ? 0 : 10 }}>
+            <Box sx={{ pt: cat.id === "inner-peace" ? 0 : { xs: 4, md: 10 } }}>
               <QuoteSlider sectionId={cat.id} title={cat.label} />
             </Box>
           </motion.div>
