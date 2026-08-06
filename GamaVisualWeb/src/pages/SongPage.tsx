@@ -26,8 +26,14 @@ const SongPage: React.FC = () => {
   const { songId } = useParams<{ songId: string }>();
   const navigate = useNavigate();
   const [showButton, setShowButton] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Separate states for BTS and Album carousels
+  const [btsSlide, setBtsSlide] = useState(0);
+  const [albumSlide, setAlbumSlide] = useState(0);
+  
+  // Separate refs for BTS and Album carousels
+  const btsCarouselRef = useRef<HTMLDivElement>(null);
+  const albumCarouselRef = useRef<HTMLDivElement>(null);
 
   const currentSong = songCatalog.find(song => song.id === songId);
 
@@ -44,13 +50,14 @@ const SongPage: React.FC = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const scrollCarousel = (direction: "left" | "right") => {
-    const container = carouselRef.current;
+  const scrollCarousel = (direction: "left" | "right", containerRef: React.RefObject<HTMLDivElement | null>) => {
+    const container = containerRef.current;
     if (!container) return;
 
     const scrollAmount = container.clientWidth;
     const isAtLeftMost = container.scrollLeft <= 0;
-    const isAtRightMost = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
+    // Using Math.ceil to prevent fractional pixel rounding issues
+    const isAtRightMost = Math.ceil(container.scrollLeft + container.clientWidth) >= container.scrollWidth;
 
     if (direction === "left") {
       container.scrollLeft = isAtLeftMost ? container.scrollWidth : container.scrollLeft - scrollAmount;
@@ -59,24 +66,18 @@ const SongPage: React.FC = () => {
     }
   };
 
-  const handleCarouselScroll = () => {
-    if (carouselRef.current) {
-      const scrollPosition = carouselRef.current.scrollLeft;
-      const slideWidth = carouselRef.current.clientWidth;
+  const handleCarouselScroll = (
+    containerRef: React.RefObject<HTMLDivElement | null>, 
+    currentSlideState: number, 
+    setSlideState: React.Dispatch<React.SetStateAction<number>>
+  ) => {
+    if (containerRef.current) {
+      const scrollPosition = containerRef.current.scrollLeft;
+      const slideWidth = containerRef.current.clientWidth;
       const newIndex = Math.round(scrollPosition / slideWidth);
-      if (newIndex !== currentSlide) {
-        setCurrentSlide(newIndex);
+      if (newIndex !== currentSlideState) {
+        setSlideState(newIndex);
       }
-    }
-  };
-
-  const goToSlide = (index: number) => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollTo({
-        left: index * carouselRef.current.clientWidth,
-        behavior: "smooth"
-      });
-      setCurrentSlide(index);
     }
   };
 
@@ -109,15 +110,36 @@ const SongPage: React.FC = () => {
     });
   };
 
+  // BTS Auto-Scroll Effect (Longer duration: 8 seconds)
+  useEffect(() => {
+    if (!currentSong?.bts?.length) return;
+
+    const interval = window.setInterval(() => {
+      setBtsSlide((prev) => {
+        const nextIndex = prev + 1 >= currentSong.bts!.length ? 0 : prev + 1;
+        if (btsCarouselRef.current) {
+          btsCarouselRef.current.scrollTo({
+            left: nextIndex * btsCarouselRef.current.clientWidth,
+            behavior: "smooth"
+          });
+        }
+        return nextIndex;
+      });
+    }, 8000); // 8000ms provides enough time for reading text
+
+    return () => window.clearInterval(interval);
+  }, [currentSong?.bts?.length]);
+
+  // Album Photos Auto-Scroll Effect (Standard duration: 4 seconds)
   useEffect(() => {
     if (!currentSong?.albumPhotos?.length) return;
 
     const interval = window.setInterval(() => {
-      setCurrentSlide((prev) => {
+      setAlbumSlide((prev) => {
         const nextIndex = prev + 1 >= currentSong.albumPhotos!.length ? 0 : prev + 1;
-        if (carouselRef.current) {
-          carouselRef.current.scrollTo({
-            left: nextIndex * carouselRef.current.clientWidth,
+        if (albumCarouselRef.current) {
+          albumCarouselRef.current.scrollTo({
+            left: nextIndex * albumCarouselRef.current.clientWidth,
             behavior: "smooth"
           });
         }
@@ -170,7 +192,7 @@ const SongPage: React.FC = () => {
     <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
       <Navbar />
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
+      <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 3, md: 4 } }}>
 
         {/* HERO HEADER & MAIN COVER */}
         <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeIn} sx={{ textAlign: "center", mb: 8 }}>
@@ -212,26 +234,6 @@ const SongPage: React.FC = () => {
             <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", letterSpacing: 1, textAlign: "left", mb: 2 }}>
               SONG LYRIC
             </Typography>
-
-            {/* <Typography variant="body1" sx={{ whiteSpace: "pre-line", textAlign: "left", lineHeight: 1.8, fontSize: { xs: "1rem", md: "1.1rem" }, opacity: 0.9, mb: 4 }}>
-              Temukan chord untuk lagu ini dan bawakan{'\n'}dengan caramu!
-            </Typography>
-
-            <Button
-              variant="contained"
-              onClick={() => navigate(`/album/song/chord/${currentSong.id}`)}
-              sx={{
-                width: "230px",
-                borderRadius: "30px",
-                bgcolor: "#E8EAF6",
-                color: "#050A30",
-                py: 1.5,
-                fontWeight: 700,
-                textTransform: "none",
-                "&:hover": { bgcolor: "#fff" }
-              }}>
-              View Chords
-            </Button> */}
           </Box>
 
           {/* Right Column Container */}
@@ -242,14 +244,83 @@ const SongPage: React.FC = () => {
           </Box>
         </Box>
 
-        {/* BEHIND THE SCENE IMAGES */}
-        <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, mb: 6 }}>
-          {[currentSong.images.bts1, currentSong.images.bts2].map((imgSrc, index) => (
-            <Box key={index} sx={{ flex: 1, borderRadius: "20px", overflow: "hidden", bgcolor: "#E8EAF6", boxShadow: "0px 8px 25px rgba(0,0,0,0.3)", lineHeight: 0 }}>
-              <Box component="img" src={imgSrc} alt={`Behind the scene ${index + 1}`} sx={{ width: "100%", height: "auto", display: "block" }} />
+        {/* BTS Carousel */}
+        {currentSong.bts && currentSong.bts.length > 0 && (
+          <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ mb: 10 }}>
+
+            <Box sx={{ position: "relative", width: { xs: "100%", md: "70%" }, mx: "auto" }}>
+              <IconButton
+                onClick={() => scrollCarousel("left", btsCarouselRef)}
+                sx={{
+                  position: "absolute",
+                  left: { xs: 12, md: 20 },
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  bgcolor: "rgba(255,255,255,0.9)",
+                  color: "#000",
+                  zIndex: 2,
+                  boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
+                  opacity: 0.2,
+                  "&:hover": { bgcolor: "#fff" , opacity: 1},
+                }}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
+
+              <IconButton
+                onClick={() => scrollCarousel("right", btsCarouselRef)}
+                sx={{
+                  position: "absolute",
+                  right: { xs: 12, md: 20 },
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  bgcolor: "rgba(255,255,255,0.9)",
+                  color: "#000",
+                  zIndex: 2,
+                  boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
+                  opacity: 0.2  ,
+                  "&:hover": { bgcolor: "#fff" , opacity: 1},
+                }}
+              >
+                <ChevronRightIcon />
+              </IconButton>
+
+              <Box
+                ref={btsCarouselRef}
+                onScroll={() => handleCarouselScroll(btsCarouselRef, btsSlide, setBtsSlide)}
+                sx={{
+                  display: "flex",
+                  overflowX: "hidden",
+                  scrollSnapType: "x mandatory",
+                  scrollBehavior: "smooth",
+                  borderRadius: "24px",
+                  boxShadow: "0px 10px 30px rgba(0,0,0,0.35)"
+                }}
+              >
+                {currentSong.bts?.map((photo, index) => (
+                  <Box
+                    key={`${currentSong.id}-photo-${index}`}
+                    sx={{
+                      minWidth: "100%",
+                      scrollSnapAlign: "center",
+                      aspectRatio: "16/9",
+                      overflow: "hidden",
+                      display: "flex",
+                      alignItems: "stretch"
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={photo}
+                      alt={`BTS photo ${index + 1}`}
+                      sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    />
+                  </Box>
+                ))}
+              </Box>
             </Box>
-          ))}
-        </Box>
+          </Box>
+        )}
 
         {/* SONG DESCRIPTION */}
         <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ mb: 12 }}>
@@ -293,6 +364,7 @@ const SongPage: React.FC = () => {
           ))}
         </Box>
 
+        {/* PROJECT MEMBERS CAROUSEL */}
         {currentSong.albumPhotos && currentSong.albumPhotos.length > 0 && (
           <Box component={MotionBox} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} sx={{ mb: 10 }}>
             <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", mb: 3 }}>
@@ -301,7 +373,7 @@ const SongPage: React.FC = () => {
 
             <Box sx={{ position: "relative", width: { xs: "100%", md: "70%" }, mx: "auto" }}>
               <IconButton
-                onClick={() => scrollCarousel("left")}
+                onClick={() => scrollCarousel("left", albumCarouselRef)}
                 sx={{
                   position: "absolute",
                   left: { xs: 12, md: 20 },
@@ -311,14 +383,15 @@ const SongPage: React.FC = () => {
                   color: "#000",
                   zIndex: 2,
                   boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
-                  "&:hover": { bgcolor: "#fff" }
+                  opacity: 0.2,
+                  "&:hover": { bgcolor: "#fff" , opacity: 1},
                 }}
               >
                 <ChevronLeftIcon />
               </IconButton>
 
               <IconButton
-                onClick={() => scrollCarousel("right")}
+                onClick={() => scrollCarousel("right", albumCarouselRef)}
                 sx={{
                   position: "absolute",
                   right: { xs: 12, md: 20 },
@@ -328,15 +401,16 @@ const SongPage: React.FC = () => {
                   color: "#000",
                   zIndex: 2,
                   boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
-                  "&:hover": { bgcolor: "#fff" }
+                  opacity: 0.2,
+                  "&:hover": { bgcolor: "#fff" , opacity: 1},
                 }}
               >
                 <ChevronRightIcon />
               </IconButton>
 
               <Box
-                ref={carouselRef}
-                onScroll={handleCarouselScroll}
+                ref={albumCarouselRef}
+                onScroll={() => handleCarouselScroll(albumCarouselRef, albumSlide, setAlbumSlide)}
                 sx={{
                   display: "flex",
                   overflowX: "hidden",
@@ -365,22 +439,6 @@ const SongPage: React.FC = () => {
                       sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                     />
                   </Box>
-                ))}
-              </Box>
-
-              <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mt: 2 }}>
-                {currentSong.albumPhotos.map((_, index) => (
-                  <Box
-                    key={`dot-${index}`}
-                    onClick={() => goToSlide(index)}
-                    sx={{
-                      width: 10,
-                      height: 10,
-                      borderRadius: "50%",
-                      bgcolor: index === currentSlide ? "#fff" : "rgba(255,255,255,0.4)",
-                      cursor: "pointer"
-                    }}
-                  />
                 ))}
               </Box>
             </Box>

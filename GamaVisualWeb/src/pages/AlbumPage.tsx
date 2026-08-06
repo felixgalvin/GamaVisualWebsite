@@ -7,8 +7,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion, type Variants } from "framer-motion";
 import Navbar from "../routes/NavBar";
 import Footer from "../routes/BottomNav";
-import thumbnail from "../assets/YTThumbnailKasihMuTakBerubah.png";
-import faith from "../assets/ResilienceFaith2.png";
+import { songCatalog } from "../data/songs";
 
 // 1. IMPORT USE NAVIGATE
 import { useNavigate } from "react-router-dom"; 
@@ -25,26 +24,8 @@ const fadeIn: Variants = {
   visible: { opacity: 1, transition: { duration: 1.5 } }
 };
 
-// 2. MAKE SURE THESE IDs MATCH YOUR songCatalog IDs!
-// E.g., if songCatalog has id: "kasih-mu-tak-berubah", make sure it matches here so the router can find it.
-const songs = [
-  {
-    id: "kasih-mu-tak-berubah", 
-    title: "KASIH-MU TAK BERUBAH",
-    verse: "Mazmur 37:23-24 (TB)",
-    desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
-    img: thumbnail,
-    artist: "Tasya"
-  },
-  {
-    id: "satu-dalam-doa",
-    title: "SATU DALAM DOA",
-    verse: "Mazmur 37:23-24 (TB)",
-    desc: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas.",
-    img: faith,
-    artist: "Tasya"
-  }
-];
+// 2. Use shared songCatalog data instead of hardcoded song objects.
+const songs = songCatalog;
 
 const AlbumPage: React.FC = () => {
   // 3. INITIALIZE NAVIGATE HOOK
@@ -156,7 +137,7 @@ const AlbumPage: React.FC = () => {
     <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
         <Navbar />
 
-        <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
+        <Container maxWidth="lg" sx={{ pt: { xs: 8, md: 12 }, pb: { xs: 4, md: 6 } }}>
     
         <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 8 }}>
             
@@ -168,7 +149,7 @@ const AlbumPage: React.FC = () => {
                 top: "50%",
                 transform: "translateY(-50%)",
                 bgcolor: "rgba(255,255,255,0.9)", 
-                opacity: 0.7,
+                opacity: 0.2,
                 color: "#000", 
                 zIndex: 10,
                 boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
@@ -186,7 +167,7 @@ const AlbumPage: React.FC = () => {
                 top: "50%",
                 transform: "translateY(-50%)",
                 bgcolor: "rgba(255,255,255,0.9)",
-                opacity: 0.7, 
+                opacity: 0.2, 
                 color: "#000", 
                 zIndex: 10,
                 boxShadow: "0px 4px 10px rgba(0,0,0,0.3)",
@@ -218,7 +199,7 @@ const AlbumPage: React.FC = () => {
                     height: "100%",
                     scrollSnapAlign: "center",
                     position: "relative",
-                    backgroundImage: `url('${song.img}')`,
+                    backgroundImage: `url('${song.images.cover}')`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     display: "flex",
@@ -233,37 +214,6 @@ const AlbumPage: React.FC = () => {
                 }}
                 >
                 </Box>
-            ))}
-            </Box>
-
-            {/* CAROUSEL DOTS */}
-            <Box 
-            sx={{ 
-                position: "absolute", 
-                bottom: 20, 
-                left: "50%", 
-                transform: "translateX(-50%)", 
-                display: "flex", 
-                gap: 1.5, 
-                zIndex: 10 
-            }}
-            >
-            {songs.map((_, index) => (
-                <Box
-                key={`dot-${index}`}
-                onClick={() => goToSlide(index)}
-                sx={{
-                    width: currentSlide === index ? 12 : 8,
-                    height: currentSlide === index ? 12 : 8,
-                    borderRadius: "50%",
-                    backgroundColor: currentSlide === index ? "#fff" : "rgba(255,255,255,0.5)",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                    backgroundColor: "#ffffff"
-                    }
-                }}
-                />
             ))}
             </Box>
 
@@ -343,7 +293,7 @@ const AlbumPage: React.FC = () => {
             whileInView="visible" 
             viewport={{ once: true, amount: 0.2 }} 
             variants={fadeInUp} 
-            style={{ marginBottom: "3rem", scrollMarginTop: "100px" }}
+            style={{ marginBottom: "1.5rem", scrollMarginTop: "100px" }}
           >
             <Box sx={{ mb: 12, scrollMarginTop: "100px" }}>
               <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", textAlign: "center", mb: 6 }}>
@@ -364,7 +314,7 @@ const AlbumPage: React.FC = () => {
                 >
                     <Box 
                     component="img" 
-                    src={song.img} 
+                    src={song.images.cover} 
                     alt={song.title} 
                     sx={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover" }} 
                     />
@@ -373,10 +323,10 @@ const AlbumPage: React.FC = () => {
               
                 <Box sx={{ width: { xs: "100%", md: "50%" }, textAlign: "left" }}>
                     <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-                    {song.verse}
+                    {song.bibleVerseRef}
                     </Typography>
                     <Typography variant="body1" sx={{ mb: 4, lineHeight: 1.8, opacity: 0.9, fontSize: "1.1rem" }}>
-                    {song.desc}
+                    {song.shortDescription || song.description}
                     </Typography>
                     
                     <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", width: "100%" }}>
@@ -398,7 +348,9 @@ const AlbumPage: React.FC = () => {
                         Learn More
                     </Button>
                     <Button 
-                        href="https://youtu.be/xZK7DLkecv0?si=FCYqA0ykr-bByyb7"
+                        href={song.ytLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         variant="contained" 
                         sx={{ 
                         flex: 1,
