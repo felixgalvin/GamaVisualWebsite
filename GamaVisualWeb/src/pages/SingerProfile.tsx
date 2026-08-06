@@ -103,7 +103,7 @@ const memberData = {
       instagramUrl: "https://www.instagram.com/felixgalvin_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       bio: [
         "Lakukanlah segala sesuatu dengan kasih. Kasih adalah inti dari iman Kristen, dan melalui kasih kita mencerminkan karakter Tuhan kepada dunia.",
-        "Kemampuan diberikan Tuhan kepada setiap orang, maka dari itu jangan pernah takut untuk mencoba",
+        "Kemampuan diberikan Tuhan kepada setiap orang, maka dari itu jangan pernah takut untuk mencoba.",
         "Yeremia 29:11 - Sebab Aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan."
       ]
     }

@@ -71,7 +71,7 @@ export const songCatalog: Song[] = [
     releaseInfo: "13 Februari 2026 - Tasya",
     bibleVerseText: '"TUHAN menetapkan langkah-langkah orang yang hidupnya berkenan kepada-Nya; apabila ia jatuh, tidaklah sampai tergeletak, sebab TUHAN menopang tangannya."',
     bibleVerseRef: "Mazmur 37: 23-24",
-    lyrics: "Verse\nSaat ku lemah Kau angkat diriku\nSaat ku terjatuh Tuhan menolongku\n\nReff\nKasih-Mu tak berubah selamanya di hidupku\nMengalir s'panjang waktu\nYesus Kau di hidupku\n\nBridge\nDi tengah badai Kau beri damai\nDalam susahku Kau menyertaiku\nDi tengah topan Kau pegang tanganku\nS'lamanya kupercaya janji-Mu s'lalu",
+    lyrics: "(Verse)\nSaat ku lemah Kau angkat diriku\nSaat ku terjatuh Tuhan menolongku\n\n(Reff)\nKasih-Mu tak berubah selamanya di hidupku\nMengalir s'panjang waktu\nYesus Kau di hidupku\n\n(Bridge)\nDi tengah badai Kau beri damai\nDalam susahku Kau menyertaiku\nDi tengah topan Kau pegang tanganku\nS'lamanya kupercaya janji-Mu s'lalu",
     description: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas. Sesuai dengan ayat Alkitab dalam MAZMUR 37:23-24 (TB). Selamat mendengarkan, Tuhan Yesus memberkati.",
     shortDescription: "Karya ini lahir dari kesadaran kami akan betapa dahsyatnya kasih Tuhan yang bekerja di dalam hidup kami. Melalui nada dan lirik ini, kami ingin mengajak Anda untuk tetap semangat dan sepenuhnya percaya pada kasih-Nya yang tak terbatas. Selamat mendengarkan, Tuhan Yesus memberkati.",
     profiles: [
@@ -113,7 +113,7 @@ export const songCatalog: Song[] = [
       {
         name: "Felix",
         job: "Singer",
-        bio: 'Lagu Satu Dalam Doa menjadi lagu yang kembali mengingatkan saya akan persatuan dan harapan dari Bhineka Tunggal Ika. Perbedaan merupakan kekuatan kita Indonesia, bukan kelemahan. Perjuangan yang telah diupayakan pada masa lalu jangan kita sia-siakan, marilah kita perjuangkan. Semangat Indonesia! Tuhan Yesus beserta dengan kita!',
+        bio: 'Lagu Satu Dalam Doa menjadi lagu yang kembali mengingatkan saya akan persatuan dan harapan dari Bhinneka Tunggal Ika. Perbedaan merupakan kekuatan kita Indonesia, bukan kelemahan. Perjuangan yang telah diupayakan pada masa lalu jangan kita sia-siakan, marilah kita perjuangkan. Semangat Indonesia! Tuhan Yesus beserta dengan kita!',
         image: felixImgSDD
       },
       {
