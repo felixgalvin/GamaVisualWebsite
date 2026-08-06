@@ -95,16 +95,6 @@ const AlbumPage: React.FC = () => {
     }
   };
 
-  const goToSlide = (index: number) => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollTo({
-        left: index * carouselRef.current.clientWidth,
-        behavior: "smooth"
-      });
-      setCurrentSlide(index);
-    }
-  };
-
   useEffect(() => {
     const autoScroll = setInterval(() => {
       scrollCarousel("right");
