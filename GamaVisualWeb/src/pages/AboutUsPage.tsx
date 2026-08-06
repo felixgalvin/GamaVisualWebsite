@@ -9,8 +9,11 @@ import Footer from "../routes/BottomNav";
 import heroImg from "../assets/CoverBlur.png";
 import heroImg2 from "../assets/FotoGladi.png";
 import heroImg3 from "../assets/aboutus.png";
-import heroImg4 from "../assets/behind.jpg";
+import heroImg4 from "../assets/aboutus3.jpg";
 import heroImg5 from "../assets/SiaranRadioMei.jpeg";
+import heroImg6 from "../assets/aboutus4.jpg";
+import heroImg7 from "../assets/aboutus5.png";
+import heroImg8 from "../assets/aboutus6.jpg";
 import activity1 from "../assets/SiaranRadioMei.jpeg";
 import activity2 from "../assets/behind.jpg";
 import activity3 from "../assets/aboutus2.png";
@@ -27,7 +30,7 @@ const fadeIn: Variants = {
     visible: { opacity: 1, transition: { duration: 1.5 } }
 };
 
-const heroImages = [heroImg, heroImg2, heroImg3, heroImg4, heroImg5];
+const heroImages = [heroImg, heroImg2, heroImg3, heroImg4, heroImg5, heroImg6, heroImg7, heroImg8];
 
 const activitiesData = [
     { img: activity1, title: "Siaran Radio Kharisma 96.8FM", date: "23 Mei 2026" },
