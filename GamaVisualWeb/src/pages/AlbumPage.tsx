@@ -127,9 +127,9 @@ const AlbumPage: React.FC = () => {
     <Box sx={{ minHeight: "100vh", width: "100vw", backgroundColor: "#050A30", color: "#fff", overflowX: "hidden" }}>
         <Navbar />
 
-        <Container maxWidth="lg" sx={{ pt: { xs: 10, md: 15 }, pb: { xs: 10, md: 15 } }}>
+        <Container maxWidth="lg" sx={{ pt: { xs: 8, md: 12 }, pb: { xs: 3, md: 4 } }}>
     
-        <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 10 }}>
+        <Box component={MotionBox} initial="hidden" animate="visible" variants={fadeIn} sx={{ position: "relative", width: "100%", mb: 8 }}>
             
             <IconButton 
             onClick={() => scrollCarousel("left")}
@@ -283,9 +283,9 @@ const AlbumPage: React.FC = () => {
             whileInView="visible" 
             viewport={{ once: true, amount: 0.2 }} 
             variants={fadeInUp} 
-            style={{ marginBottom: "1.5rem", scrollMarginTop: "100px" }}
+            style={{ marginBottom: "0rem", scrollMarginTop: "100px" }}
           >
-            <Box sx={{ mb: 12, scrollMarginTop: "100px" }}>
+            <Box sx={{ mb: 8, scrollMarginTop: "100px" }}>
               <Typography variant="h3" sx={{ fontWeight: 800, textTransform: "uppercase", textAlign: "center", mb: 6 }}>
                 {song.title}
               </Typography>
