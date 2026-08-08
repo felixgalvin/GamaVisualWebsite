@@ -249,7 +249,7 @@ const HomePage: React.FC = () => {
             Behind The Scene
           </Typography>
 
-          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "repeat(3, minmax(0, 1fr))" }, gap: 3, justifyContent: "center" }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: "center" }}>
             {[behind, behind2, behind3].map((path, index) => (
               <Box
                 key={index}
@@ -259,17 +259,23 @@ const HomePage: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.5 }}
                 sx={{
-                  width: "100%",
-                  maxWidth: "100%",
                   display: "flex",
-                  justifyContent: "center"
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  width: {
+                    xs: "100%",
+                    sm: "calc((100% - 32px) / 2)",
+                    md: "calc((100% - 64px) / 3)"
+                  },
+                  maxWidth: { xs: "520px", sm: "none" }
                 }}
               >
                 <Box
                   sx={{
                     width: "100%",
                     aspectRatio: "4 / 3",
-                    borderRadius: "16px",
+                    borderRadius: "24px",
                     overflow: "hidden",
                     lineHeight: 0,
                     boxShadow: "0px 4px 20px rgba(0,0,0,0.3)",
