@@ -1,7 +1,7 @@
 import tasyaImg from "../assets/Tasya.jpg";
 import otnielImg from "../assets/KoOT.jpeg";
 import felixImgSDD from "../assets/felixsdd.png";
-import tasyaImgSDD from "../assets/tasyasdd.jpg";
+import tasyaImgSDD from "../assets/tasyasdd.png";
 import otnielImgSDD from "../assets/kootsdd.png";
 import q2 from "../assets/2.png";
 import q3 from "../assets/3.png";
@@ -35,6 +35,7 @@ import m6sdd from "../assets/m6sdd.png";
 import m7sdd from "../assets/m7sdd.png";
 
 import bts1 from "../assets/SiaranRadioMei.jpeg";
+import bts2 from "../assets/btskasihmu.png";
 
 import KasihMuTakBerubah from "../assets/YTThumbnailKasihMuTakBerubah.png";
 import SatuDalamDoa from "../assets/YTThumbnailSDD.png";
@@ -88,7 +89,7 @@ export const songCatalog: Song[] = [
         image: otnielImg 
       }
     ],
-    bts: [bts1],
+    bts: [bts1, bts2],
     images: {
       cover: KasihMuTakBerubah
     },

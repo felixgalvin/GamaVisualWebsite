@@ -134,7 +134,7 @@ const AlbumPage: React.FC = () => {
             <IconButton 
             onClick={() => scrollCarousel("left")}
             sx={{ 
-                position: "absolute", 
+                position: "absolute",   
                 left: { xs: 12, md: 30 }, 
                 top: "50%",
                 transform: "translateY(-50%)",
