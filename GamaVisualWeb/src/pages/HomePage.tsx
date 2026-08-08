@@ -251,15 +251,24 @@ const HomePage: React.FC = () => {
 
           <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "repeat(3, minmax(0, 1fr))" }, gap: 3, justifyContent: "center" }}>
             {[behind, behind2, behind3].map((path, index) => (
-              <Box key={index}>
+              <Box
+                key={index}
+                component={MotionBox}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2, duration: 0.5 }}
+                sx={{
+                  width: "100%",
+                  maxWidth: "100%",
+                  display: "flex",
+                  justifyContent: "center"
+                }}
+              >
                 <Box
-                  component={MotionBox}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2, duration: 0.5 }}
                   sx={{
                     width: "100%",
+                    aspectRatio: "4 / 3",
                     borderRadius: "16px",
                     overflow: "hidden",
                     lineHeight: 0,
@@ -268,8 +277,7 @@ const HomePage: React.FC = () => {
                     "&:hover": {
                       transform: "translateY(-10px)",
                       boxShadow: "0px 20px 40px rgba(0,0,0,0.5)",
-                    },
-                    marginRight: 19.3
+                    }
                   }}
                 >
                   <Box
@@ -278,7 +286,7 @@ const HomePage: React.FC = () => {
                     alt={`Behind the scene ${index + 1}`}
                     sx={{
                       width: "100%",
-                      height: "280px",
+                      height: "100%",
                       objectFit: "cover",
                       display: "block"
                     }}
