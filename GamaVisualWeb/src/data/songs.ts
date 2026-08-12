@@ -98,7 +98,7 @@ export const songCatalog: Song[] = [
   {
     id: "satu-dalam-doa",
     title: "Satu Dalam Doa",
-    releaseInfo: "17 Agustus 2026 - Tasya & Felix",
+    releaseInfo: "14 Agustus 2026 - Tasya & Felix",
     bibleVerseText: '"Dan di atas semuanya itu: kenakanlah kasih, sebagai pengikat yang mempersatukan dan menyempurnakan."',
     bibleVerseRef: "Kolose 3:14",
     lyrics: "(Verse 1)\nDi bawah langit yang sama kita berpijak\nDari ufuk timur hingga ke barat\nKulit kita berbeda, tutur kata tak serupa\nNamun satu detak jantung untuk Indonesia\n\n(Pre-Chorus)\n(Sunda): \nHiji rasa, dina haté anu suci \n*Satu rasa, di dalam hati yang suci*\n(Batak): \nSada ma hita, rap marlas ni roha\n*Satu lah kita, bersama bersukacita*\n(Jawa): \nMbangun paseduluran ingkang nyawiji\n*Membangun persaudaraan yang menyatu*\n\n(Chorus)\nWalau berbeda suku dan budaya\nKita adalah satu, Bhinneka Tunggal Ika\nTuhan, jamah tanah air kami\nJadikan Indonesia luar biasa\nDi dalam tangan-Mu, kami bersatu\n\n(Verse 2)\n(NTT/Kupang): \nKatong pung kawan, katong pung sodara\n*Teman kita, saudara kita*\n(Pontianak): \nBudak melayu, dayak, Tionghoa (Tyonghwa), semue bise kumpul mace\nTak ada sekat yang mampu memisahkan\nSatu darah, satu bangsa, satu tujuan\n*Anak Melayu, Dayak, Tionghoa, semua bisa berkumpul jadi satu*\n\n(Back to Chorus) \n\n(Bridge)\nCurahkan berkat-Mu Tuhan\nAtas pulau-pulau kami\nBiar kemuliaan-Mu nyata di negeri ini\nIndonesia... Jaya!\n\n(Outro)\nTuhan memberkati \nTuhan memberkati\nTuhan memberkati\nNusantara (3x)",
